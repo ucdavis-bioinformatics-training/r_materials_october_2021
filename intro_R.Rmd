@@ -559,6 +559,9 @@ if (!("tidyr" %in% rownames(installed.packages()))){
 if (!("magrittr" %in% rownames(installed.packages()))){
   install.packages("magrittr")
 }
+if (!("viridis" %in% rownames(installed.packages()))){
+  install.packages("viridis")
+}
 ```
 
 # 9. Visualizations
@@ -569,23 +572,67 @@ library(tidyr)
 library(magrittr)
 ```
 
+The ggplot2 library is an extremely popular visualization package that provides an interface for extremely fine control over graphics for plotting. It is used by a number of of other popular packages in their built-in plotting functions. It provides a "grammar of graphics" that is quite useful to know.
+
+##### A note about accessibility:
+
+The default colors automatically selected by ggplot2 are not very user-friendly. Colors are chosen by sampling evenly hues on the color wheel. Because of this behavior, all of the colors have similar intensity, which means that they do not work in a gray-scale printing, and may be difficult to distinguish for users with atypical color vision. There are many resources for selecting color palettes online. Here are just a few:
+
+- [Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+- [ColorBrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
+- [colorBlindness Guide](https://cran.r-project.org/web/packages/colorBlindness/vignettes/colorBlindness.html#Collection_of_safe_colors)
+- [Digital Accessibility](https://accessibility.digital.gov/visual-design/color-and-contrast/)
+- [Blog entry](https://personal.sron.nl/~pault/)
+
+```{r}
+library(viridis)
+?viridis
+
+locations.palette <- viridis(3)
+smoking.palette <- inferno(2, begin = 0.5, direction = -1)
+years.palette <- mako(2, begin = 0.4, end = 0.9, direction = -1)
+```
+
 ## Frequency
 
 ```{r}
-bw.hist <- ggplot(data = experiment, mapping = aes(x = birthweight)) +
-  geom_histogram(binwidth = 0.25)
-bw.hist
-bw.hist +
+ggplot(data = experiment, mapping = aes(x = birthweight)) +
+  geom_histogram(binwidth = 0.25) +
   facet_wrap(~location, nrow = 3) +
   labs(x = "weight (Kg)", y = "births") +
+  theme_bw()
+ggplot(data = experiment, mapping = aes(x = birthweight)) +
+  geom_density() +
+  theme_bw()
+ggplot(data = experiment, mapping = aes(x = birthweight)) +
+  geom_density() +
+  facet_wrap(~location, nrow = 3) +
+  theme_bw()
+ggplot(data = experiment,
+       mapping = aes(x = birthweight,
+                     color = location)) +
+  geom_density() +
+  scale_color_manual(values = locations.palette) +
+  theme_bw()
+ggplot(data = experiment,
+       mapping = aes(x = birthweight,
+                     color = as.factor(year))) +
+  geom_density() +
+  facet_wrap(~as.factor(year), nrow = 1) +
+  scale_color_manual(values = years.palette) +
   theme_bw()
 ```
 
 ## Bar chart
 
 ```{r}
-ggplot(data = experiment, mapping = aes(x = as.factor(month), fill = as.factor(year))) +
-  geom_bar(position = position_dodge2(preserve = "single"))
+ggplot(data = experiment,
+       mapping = aes(x = as.factor(month), fill = as.factor(year))) +
+  geom_bar(position = position_dodge2(preserve = "single")) +
+  labs(x = "Birth month", y = "Samples", fill = "Year",
+       caption = "Colors: https://personal.sron.nl/~pault/") +
+  scale_fill_manual(values = years.palette) +
+  theme_bw()
 ```
 
 ## box and violin
@@ -597,7 +644,13 @@ experiment %>%
                values_to = "expression") %>%
   ggplot(mapping = aes(x = smoker, y = expression, fill = smoker)) +
   geom_boxplot() +
-  facet_wrap(~ gene.id, nrow = 2)
+  facet_wrap(~ gene.id, nrow = 2) +
+  scale_fill_manual(values = smoking.palette) +
+  scale_x_discrete(labels = c("non-smoker", "smoker")) +
+  guides(fill = "none") +
+  labs(y = "miRNA expression") +
+  theme_bw() +
+  theme(axis.title.x = element_blank())
 
 experiment %>%
   pivot_longer(cols = c(22:25),
@@ -605,7 +658,9 @@ experiment %>%
                values_to = "expression") %>%
   ggplot(mapping = aes(x = smoker, y = expression, fill = smoker)) +
   geom_violin() +
-  facet_wrap(~ gene.id, nrow = 2)
+  scale_fill_manual(values = smoking.palette) +
+  facet_wrap(~ gene.id, nrow = 2) +
+  theme_bw()
 ```
 
 ## scatter plots
@@ -615,23 +670,30 @@ experiment %>%
   pivot_longer(cols = c(22:25),
                names_to = "gene.id",
                values_to = "expression") %>%
-  ggplot(mapping = aes(x = maternal.cigarettes, y = expression, color = weeks.gestation)) +
+  ggplot(mapping = aes(x = maternal.cigarettes, y = expression, color = location)) +
   geom_point() +
-  facet_wrap(~ gene.id, nrow = 2)
+  facet_wrap(~ gene.id, nrow = 2) +
+  theme_bw()
 
 ggplot(experiment, mapping = aes(x = weeks.gestation, y = birthweight, color = smoker)) +
-  geom_point()
+  geom_point()  +
+  theme_bw()
 ```
 
 ```{r}
 ggplot(experiment, mapping = aes(x = weeks.gestation, y = birthweight, color = smoker)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth() +
+  theme_bw()
 ```
 
 ## regression?
 
 ## Heat map
+
+```{r}
+
+```
 
 # 10. Troubleshooting
 
@@ -639,6 +701,9 @@ Common errors:
 
 - file is not in the right place, or is incorrectly named
 - improperly formatted files
+- missing values
+- spelling errors
+- incorrectly named parameters
 
 ```{r}
 
