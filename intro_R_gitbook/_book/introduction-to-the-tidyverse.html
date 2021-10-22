@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Introduction to the tidyverse | Troubleshooting</title>
+  <meta name="description" content="7 Introduction to the tidyverse | Troubleshooting" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Introduction to the tidyverse | Troubleshooting" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Introduction to the tidyverse | Troubleshooting" />
+  
+  
+  
+
+<meta name="author" content="UC Davis Bioinformatics Core" />
+
+
+<meta name="date" content="2021-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="installing-packages.html"/>
+<link rel="next" href="visualizations.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R for Bioinformatics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html"><i class="fa fa-check"></i><b>1</b> RStudio and R notebooks</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#rstudio-1"><i class="fa fa-check"></i><b>1.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#r-notebooks"><i class="fa fa-check"></i><b>1.2</b> R notebooks</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html"><i class="fa fa-check"></i><b>2</b> Importing and exporting data</a></li>
+<li class="chapter" data-level="3" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>3</b> Data frames</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-frames.html"><a href="data-frames.html#structure-of-a-data-frame"><i class="fa fa-check"></i><b>3.1</b> Structure of a data frame</a></li>
+<li class="chapter" data-level="3.2" data-path="data-frames.html"><a href="data-frames.html#selecting-a-single-column-using-the-and-operators"><i class="fa fa-check"></i><b>3.2</b> Selecting a single column using the $ and [[ operators</a></li>
+<li class="chapter" data-level="3.3" data-path="data-frames.html"><a href="data-frames.html#selecting-a-subset-of-the-data-frame-using-the-operator"><i class="fa fa-check"></i><b>3.3</b> Selecting a subset of the data frame using the [ operator</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-frames.html"><a href="data-frames.html#subsetting-a-vector"><i class="fa fa-check"></i><b>3.3.1</b> Subsetting a vector</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-data-types.html"><a href="basic-data-types.html"><i class="fa fa-check"></i><b>4</b> Basic data types</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="basic-data-types.html"><a href="basic-data-types.html#understanding-class"><i class="fa fa-check"></i><b>4.1</b> Understanding class</a></li>
+<li class="chapter" data-level="4.2" data-path="basic-data-types.html"><a href="basic-data-types.html#coercion-converting-between-classes"><i class="fa fa-check"></i><b>4.2</b> Coercion: converting between classes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#basic-functions"><i class="fa fa-check"></i><b>5.1</b> Basic functions</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#combining-functions"><i class="fa fa-check"></i><b>5.2</b> Combining functions</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#the-apply-family-of-functions"><i class="fa fa-check"></i><b>5.3</b> The apply() family of functions</a></li>
+<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#custom-functions"><i class="fa fa-check"></i><b>5.4</b> Custom functions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-packages.html"><a href="installing-packages.html"><i class="fa fa-check"></i><b>6</b> Installing packages</a></li>
+<li class="chapter" data-level="7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Introduction to the tidyverse</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#defining-tidy-data"><i class="fa fa-check"></i><b>7.1</b> Defining tidy data</a></li>
+<li class="chapter" data-level="7.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#pipes-combining-tidyverse-functions"><i class="fa fa-check"></i><b>7.2</b> Pipes: combining tidyverse functions</a></li>
+<li class="chapter" data-level="7.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#transforming-data"><i class="fa fa-check"></i><b>7.3</b> Transforming data</a></li>
+<li class="chapter" data-level="7.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#summarizing-data"><i class="fa fa-check"></i><b>7.4</b> Summarizing data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>8</b> Visualizations</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualizations.html"><a href="visualizations.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>8.1</b> Histograms and density plots</a></li>
+<li class="chapter" data-level="8.2" data-path="visualizations.html"><a href="visualizations.html#bar-charts"><i class="fa fa-check"></i><b>8.2</b> Bar charts</a></li>
+<li class="chapter" data-level="8.3" data-path="visualizations.html"><a href="visualizations.html#box-and-violin-plots"><i class="fa fa-check"></i><b>8.3</b> Box and violin plots</a></li>
+<li class="chapter" data-level="8.4" data-path="visualizations.html"><a href="visualizations.html#scatter-plots"><i class="fa fa-check"></i><b>8.4</b> Scatter plots</a></li>
+<li class="chapter" data-level="8.5" data-path="visualizations.html"><a href="visualizations.html#heat-maps"><i class="fa fa-check"></i><b>8.5</b> Heat maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i><b>9</b> Troubleshooting</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Troubleshooting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-the-tidyverse" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Introduction to the tidyverse</h1>
+<p>All of the functions used up to this point were part of base R. They are built into the R language itself. Base R is extremely powerful, but R is also <em>extensible</em>.</p>
+<p>The <a href="https://www.tidyverse.org/">tidyverse</a> is a collection of packages by the creators of RStudio that share an approach to data science.</p>
+<p>The authors model data science like this:</p>
+<p><a href="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png">Data science life cycle</a></p>
+<p>The tidyverse packages replace some of the base R functions with alternatives that are intended to be more user friendly for data scientists who are following this life cycle.</p>
+<p>We will only be covering a few of the packages from the tidyverse.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="introduction-to-the-tidyverse.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb128-2"><a href="introduction-to-the-tidyverse.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb128-3"><a href="introduction-to-the-tidyverse.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
+<div id="defining-tidy-data" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Defining tidy data</h2>
+<p>In “tidy” data, every column is a variable, every row is an observation, and every cell contains a single observation. Is the birthweight data frame tidy? Why or why not?</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="introduction-to-the-tidyverse.html#cb129-1" aria-hidden="true" tabindex="-1"></a>birthweight</span></code></pre></div>
+<pre><code>##      ID birth.date    location length birthweight head.circumference
+## 1  1107  1/25/1967     General     52        3.23                 36
+## 2   697   2/6/1967 Silver Hill     48        3.03                 35
+## 3  1683  2/14/1967 Silver Hill     53        3.35                 33
+## 4    27   3/9/1967 Silver Hill     53        3.55                 37
+## 5  1522  3/13/1967    Memorial     50        2.74                 33
+## 6   569  3/23/1967    Memorial     50        2.51                 35
+## 7   365  4/23/1967    Memorial     52        3.53                 37
+## 8   808   5/5/1967 Silver Hill     48        2.92                 33
+## 9  1369   6/4/1967 Silver Hill     49        3.18                 34
+## 10 1023   6/7/1967    Memorial     52        3.00                 35
+## 11  822  6/14/1967    Memorial     50        3.42                 35
+## 12 1272  6/20/1967    Memorial     53        2.75                 32
+## 13 1262  6/25/1967 Silver Hill     53        3.19                 34
+## 14  575  7/12/1967    Memorial     50        2.78                 30
+## 15 1016  7/13/1967 Silver Hill     53        4.32                 36
+## 16  792   9/7/1967    Memorial     53        3.64                 38
+## 17  820  10/7/1967     General     52        3.77                 34
+## 18  752 10/19/1967     General     49        3.32                 36
+## 19  619  11/1/1967    Memorial     52        3.41                 33
+## 20 1764  12/7/1967 Silver Hill     58        4.57                 39
+## 21 1081 12/14/1967 Silver Hill     54        3.63                 38
+## 22  516   1/8/1968 Silver Hill     47        2.66                 33
+## 23  272  1/10/1968    Memorial     52        3.86                 36
+## 24  321  1/21/1968 Silver Hill     48        3.11                 33
+## 25 1636   2/2/1968 Silver Hill     51        3.93                 38
+## 26 1360  2/16/1968     General     56        4.55                 34
+## 27 1388  2/22/1968    Memorial     51        3.14                 33
+## 28 1363   4/2/1968     General     48        2.37                 30
+## 29 1058  4/24/1968 Silver Hill     53        3.15                 34
+## 30  755  4/25/1968    Memorial     53        3.20                 33
+## 31  462  6/19/1968 Silver Hill     58        4.10                 39
+## 32  300  7/18/1968 Silver Hill     46        2.05                 32
+## 33 1088  7/24/1968     General     51        3.27                 36
+## 34   57  8/12/1968    Memorial     51        3.32                 38
+## 35  553  8/17/1968 Silver Hill     54        3.94                 37
+## 36 1191   9/7/1968     General     53        3.65                 33
+## 37  431  9/16/1968 Silver Hill     48        1.92                 30
+## 38 1313  9/27/1968 Silver Hill     43        2.65                 32
+## 39 1600  10/9/1968     General     53        2.90                 34
+## 40  532 10/25/1968     General     53        3.59                 34
+## 41  223 12/11/1968     General     50        3.87                 33
+## 42 1187 12/19/1968 Silver Hill     53        4.07                 38
+##    weeks.gestation smoker maternal.age maternal.cigarettes maternal.height
+## 1               38  FALSE           31                   0             164
+## 2               39  FALSE           27                   0             162
+## 3               41  FALSE           27                   0             164
+## 4               41   TRUE           37                  25             161
+## 5               39   TRUE           21                  17             156
+## 6               39   TRUE           22                   7             159
+## 7               40   TRUE           26                  25             170
+## 8               34  FALSE           26                   0             167
+## 9               38   TRUE           31                  25             162
+## 10              38   TRUE           30                  12             165
+## 11              38  FALSE           20                   0             157
+## 12              40   TRUE           37                  50             168
+## 13              41   TRUE           27                  35             163
+## 14              37   TRUE           19                   7             165
+## 15              40  FALSE           19                   0             171
+## 16              40   TRUE           20                   2             170
+## 17              40  FALSE           24                   0             157
+## 18              40   TRUE           27                  12             152
+## 19              39   TRUE           23                  25             181
+## 20              41   TRUE           32                  12             173
+## 21              38  FALSE           18                   0             172
+## 22              35   TRUE           20                  35             170
+## 23              39   TRUE           30                  25             170
+## 24              37  FALSE           28                   0             158
+## 25              38  FALSE           29                   0             165
+## 26              44  FALSE           20                   0             162
+## 27              41   TRUE           22                   7             160
+## 28              37   TRUE           20                   7             163
+## 29              40  FALSE           29                   0             167
+## 30              41  FALSE           21                   0             155
+## 31              41  FALSE           35                   0             172
+## 32              35   TRUE           41                   7             166
+## 33              40  FALSE           24                   0             168
+## 34              39   TRUE           23                  17             157
+## 35              42  FALSE           24                   0             175
+## 36              42  FALSE           21                   0             165
+## 37              33   TRUE           20                   7             161
+## 38              33  FALSE           24                   0             149
+## 39              39  FALSE           19                   0             165
+## 40              40   TRUE           31                  12             163
+## 41              45   TRUE           28                  25             163
+## 42              44  FALSE           20                   0             174
+##    maternal.prepregnant.weight paternal.age paternal.education
+## 1                           57           NA                 NA
+## 2                           62           27                 14
+## 3                           62           37                 14
+## 4                           66           46                 NA
+## 5                           53           24                 12
+## 6                           52           23                 14
+## 7                           62           30                 10
+## 8                           64           25                 12
+## 9                           57           32                 16
+## 10                          64           38                 14
+## 11                          48           22                 14
+## 12                          61           31                 16
+## 13                          51           31                 16
+## 14                          60           20                 14
+## 15                          62           19                 12
+## 16                          59           24                 12
+## 17                          50           31                 16
+## 18                          48           37                 12
+## 19                          69           23                 16
+## 20                          70           38                 14
+## 21                          50           20                 12
+## 22                          57           23                 12
+## 23                          78           40                 16
+## 24                          54           39                 10
+## 25                          61           NA                 NA
+## 26                          57           23                 10
+## 27                          53           24                 16
+## 28                          47           20                 10
+## 29                          60           30                 16
+## 30                          55           25                 14
+## 31                          58           31                 16
+## 32                          57           37                 14
+## 33                          53           29                 16
+## 34                          48           NA                 NA
+## 35                          66           30                 12
+## 36                          61           21                 10
+## 37                          50           20                 10
+## 38                          45           26                 16
+## 39                          57           NA                 NA
+## 40                          49           41                 12
+## 41                          54           30                 16
+## 42                          68           26                 14
+##    paternal.cigarettes paternal.height low.birthweight geriatric.pregnancy
+## 1                   NA              NA           FALSE               FALSE
+## 2                    0             178           FALSE               FALSE
+## 3                    0             170           FALSE               FALSE
+## 4                    0             175           FALSE                TRUE
+## 5                    7             179           FALSE               FALSE
+## 6                   25              NA            TRUE               FALSE
+## 7                   25             181           FALSE               FALSE
+## 8                   25             175           FALSE               FALSE
+## 9                   50             194           FALSE               FALSE
+## 10                  50             180           FALSE               FALSE
+## 11                   0             179           FALSE               FALSE
+## 12                   0             173           FALSE                TRUE
+## 13                  25             185           FALSE               FALSE
+## 14                   0             183           FALSE               FALSE
+## 15                   0             183           FALSE               FALSE
+## 16                  12             185           FALSE               FALSE
+## 17                   0             173           FALSE               FALSE
+## 18                  25             170           FALSE               FALSE
+## 19                   2             181           FALSE               FALSE
+## 20                  25             180           FALSE               FALSE
+## 21                   7             172           FALSE               FALSE
+## 22                  50             186            TRUE               FALSE
+## 23                  50             178           FALSE               FALSE
+## 24                   0             171           FALSE               FALSE
+## 25                  NA              NA           FALSE               FALSE
+## 26                  35             179           FALSE               FALSE
+## 27                  12             176           FALSE               FALSE
+## 28                  35             185            TRUE               FALSE
+## 29                  NA             182           FALSE               FALSE
+## 30                  25             183           FALSE               FALSE
+## 31                  25             185           FALSE                TRUE
+## 32                  25             173            TRUE                TRUE
+## 33                   0             181           FALSE               FALSE
+## 34                  NA              NA           FALSE               FALSE
+## 35                   0             184           FALSE               FALSE
+## 36                  25             185           FALSE               FALSE
+## 37                  35             180            TRUE               FALSE
+## 38                   0             169            TRUE               FALSE
+## 39                  NA              NA           FALSE               FALSE
+## 40                  50             191           FALSE               FALSE
+## 41                   0             183           FALSE               FALSE
+## 42                  25             189           FALSE               FALSE
+##    month day year
+## 1      1  25 1967
+## 2      2   6 1967
+## 3      2  14 1967
+## 4      3   9 1967
+## 5      3  13 1967
+## 6      3  23 1967
+## 7      4  23 1967
+## 8      5   5 1967
+## 9      6   4 1967
+## 10     6   7 1967
+## 11     6  14 1967
+## 12     6  20 1967
+## 13     6  25 1967
+## 14     7  12 1967
+## 15     7  13 1967
+## 16     9   7 1967
+## 17    10   7 1967
+## 18    10  19 1967
+## 19    11   1 1967
+## 20    12   7 1967
+## 21    12  14 1967
+## 22     1   8 1968
+## 23     1  10 1968
+## 24     1  21 1968
+## 25     2   2 1968
+## 26     2  16 1968
+## 27     2  22 1968
+## 28     4   2 1968
+## 29     4  24 1968
+## 30     4  25 1968
+## 31     6  19 1968
+## 32     7  18 1968
+## 33     7  24 1968
+## 34     8  12 1968
+## 35     8  17 1968
+## 36     9   7 1968
+## 37     9  16 1968
+## 38     9  27 1968
+## 39    10   9 1968
+## 40    10  25 1968
+## 41    12  11 1968
+## 42    12  19 1968</code></pre>
+</div>
+<div id="pipes-combining-tidyverse-functions" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Pipes: combining tidyverse functions</h2>
+<p>The tidyverse employs piping to send the output of one function to another function, rather than the nesting used in base r. The “pipe” is written with a greater than symbol sandwiched between two percent signs, like this: <code>%&gt;%</code>.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="introduction-to-the-tidyverse.html#cb131-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb131-2"><a href="introduction-to-the-tidyverse.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(low.birthweight <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb131-3"><a href="introduction-to-the-tidyverse.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(birth.date, length, birthweight, smoker)</span></code></pre></div>
+<pre><code>##   birth.date length birthweight smoker
+## 1  7/18/1968     46        2.05   TRUE
+## 2  9/16/1968     48        1.92   TRUE
+## 3   1/8/1968     47        2.66   TRUE
+## 4  3/23/1967     50        2.51   TRUE
+## 5  9/27/1968     43        2.65  FALSE
+## 6   4/2/1968     48        2.37   TRUE</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="introduction-to-the-tidyverse.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalent to:</span></span>
+<span id="cb133-2"><a href="introduction-to-the-tidyverse.html#cb133-2" aria-hidden="true" tabindex="-1"></a>experiment[experiment<span class="sc">$</span>low.birthweight <span class="sc">==</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="st">&quot;birth.date&quot;</span>, <span class="st">&quot;length&quot;</span>, <span class="st">&quot;birthweight&quot;</span>, <span class="st">&quot;smoker&quot;</span>)]</span></code></pre></div>
+<pre><code>##    birth.date length birthweight smoker
+## 5   7/18/1968     46        2.05   TRUE
+## 8   9/16/1968     48        1.92   TRUE
+## 10   1/8/1968     47        2.66   TRUE
+## 13  3/23/1967     50        2.51   TRUE
+## 33  9/27/1968     43        2.65  FALSE
+## 35   4/2/1968     48        2.37   TRUE</code></pre>
+<p>The <code>separate()</code> function makes the conversion of the “birth.date” column into “month,” “day,” and “year” trivial.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="introduction-to-the-tidyverse.html#cb135-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb135-2"><a href="introduction-to-the-tidyverse.html#cb135-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(low.birthweight <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb135-3"><a href="introduction-to-the-tidyverse.html#cb135-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(birth.date, length, birthweight, smoker) <span class="sc">%&gt;%</span></span>
+<span id="cb135-4"><a href="introduction-to-the-tidyverse.html#cb135-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> birth.date, <span class="at">sep =</span> <span class="st">&quot;[/]&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>, <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<pre><code>##   month day year length birthweight smoker
+## 1     7  18 1968     46        2.05   TRUE
+## 2     9  16 1968     48        1.92   TRUE
+## 3     1   8 1968     47        2.66   TRUE
+## 4     3  23 1967     50        2.51   TRUE
+## 5     9  27 1968     43        2.65  FALSE
+## 6     4   2 1968     48        2.37   TRUE</code></pre>
+</div>
+<div id="transforming-data" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Transforming data</h2>
+<p>The <code>mutate()</code> function adds a new column based on data contained in the existing columns.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="introduction-to-the-tidyverse.html#cb137-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb137-2"><a href="introduction-to-the-tidyverse.html#cb137-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(low.birthweight <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb137-3"><a href="introduction-to-the-tidyverse.html#cb137-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(birth.date, length, birthweight, smoker) <span class="sc">%&gt;%</span></span>
+<span id="cb137-4"><a href="introduction-to-the-tidyverse.html#cb137-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d =</span> birthweight <span class="sc">/</span> length)</span></code></pre></div>
+<pre><code>##   birth.date length birthweight smoker          d
+## 1  7/18/1968     46        2.05   TRUE 0.04456522
+## 2  9/16/1968     48        1.92   TRUE 0.04000000
+## 3   1/8/1968     47        2.66   TRUE 0.05659574
+## 4  3/23/1967     50        2.51   TRUE 0.05020000
+## 5  9/27/1968     43        2.65  FALSE 0.06162791
+## 6   4/2/1968     48        2.37   TRUE 0.04937500</code></pre>
+</div>
+<div id="summarizing-data" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Summarizing data</h2>
+<p>The <code>group_by()</code> and <code>summarize()</code> functions apply a function to a group defined by one or more categorical variables.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="introduction-to-the-tidyverse.html#cb139-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb139-2"><a href="introduction-to-the-tidyverse.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(smoker) <span class="sc">%&gt;%</span></span>
+<span id="cb139-3"><a href="introduction-to-the-tidyverse.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.birthweight =</span> <span class="fu">mean</span>(birthweight))</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   smoker mean.birthweight
+##   &lt;lgl&gt;             &lt;dbl&gt;
+## 1 FALSE              3.51
+## 2 TRUE               3.13</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="introduction-to-the-tidyverse.html#cb141-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb141-2"><a href="introduction-to-the-tidyverse.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(smoker, low.birthweight) <span class="sc">%&gt;%</span></span>
+<span id="cb141-3"><a href="introduction-to-the-tidyverse.html#cb141-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.birthweight =</span> <span class="fu">mean</span>(birthweight))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;smoker&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 4 × 3
+## # Groups:   smoker [2]
+##   smoker low.birthweight mean.birthweight
+##   &lt;lgl&gt;  &lt;lgl&gt;                      &lt;dbl&gt;
+## 1 FALSE  FALSE                       3.55
+## 2 FALSE  TRUE                        2.65
+## 3 TRUE   FALSE                       3.38
+## 4 TRUE   TRUE                        2.30</code></pre>
+<p>To change the order of rows, use <code>arrange()</code>. To return one or more specified rows, use <code>slice()</code>.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="introduction-to-the-tidyverse.html#cb144-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb144-2"><a href="introduction-to-the-tidyverse.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(smoker) <span class="sc">%&gt;%</span></span>
+<span id="cb144-3"><a href="introduction-to-the-tidyverse.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(birthweight, length, head.circumference, weeks.gestation) <span class="sc">%&gt;%</span></span>
+<span id="cb144-4"><a href="introduction-to-the-tidyverse.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> birthweight, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## Adding missing grouping variables: `smoker`</code></pre>
+<pre><code>## # A tibble: 10 × 5
+## # Groups:   smoker [2]
+##    smoker birthweight length head.circumference weeks.gestation
+##    &lt;lgl&gt;        &lt;dbl&gt;  &lt;int&gt;              &lt;int&gt;           &lt;int&gt;
+##  1 FALSE         4.55     56                 34              44
+##  2 FALSE         4.32     53                 36              40
+##  3 FALSE         4.1      58                 39              41
+##  4 FALSE         4.07     53                 38              44
+##  5 FALSE         3.94     54                 37              42
+##  6 TRUE          4.57     58                 39              41
+##  7 TRUE          3.87     50                 33              45
+##  8 TRUE          3.86     52                 36              39
+##  9 TRUE          3.64     53                 38              40
+## 10 TRUE          3.59     53                 34              40</code></pre>
+<p>The utility of the <code>pivot_longer()</code> function will become more evident during visualization.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="introduction-to-the-tidyverse.html#cb147-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb147-2"><a href="introduction-to-the-tidyverse.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(low.birthweight <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb147-3"><a href="introduction-to-the-tidyverse.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(smoker, <span class="st">`</span><span class="at">miR-16</span><span class="st">`</span>, <span class="st">`</span><span class="at">miR-21</span><span class="st">`</span>, <span class="st">`</span><span class="at">miR-146a</span><span class="st">`</span>, <span class="st">`</span><span class="at">miR-182</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb147-4"><a href="introduction-to-the-tidyverse.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">miR-16</span><span class="st">`</span>, <span class="st">`</span><span class="at">miR-21</span><span class="st">`</span>, <span class="st">`</span><span class="at">miR-146a</span><span class="st">`</span>, <span class="st">`</span><span class="at">miR-182</span><span class="st">`</span>),</span>
+<span id="cb147-5"><a href="introduction-to-the-tidyverse.html#cb147-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;gene&quot;</span>,</span>
+<span id="cb147-6"><a href="introduction-to-the-tidyverse.html#cb147-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;expression&quot;</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 24 × 3
+##    smoker gene     expression
+##    &lt;lgl&gt;  &lt;chr&gt;         &lt;int&gt;
+##  1 TRUE   miR-16           60
+##  2 TRUE   miR-21           48
+##  3 TRUE   miR-146a         89
+##  4 TRUE   miR-182          65
+##  5 TRUE   miR-16           70
+##  6 TRUE   miR-21           51
+##  7 TRUE   miR-146a         84
+##  8 TRUE   miR-182          48
+##  9 TRUE   miR-16           61
+## 10 TRUE   miR-21           51
+## # … with 14 more rows</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="installing-packages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

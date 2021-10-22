@@ -1,0 +1,21 @@
+---
+title: "Troubleshooting"
+author: "UC Davis Bioinformatics Core"
+date: "10/21/2021"
+output: html_document
+---
+
+# Troubleshooting
+
+Common errors:
+
+- file is not in the right place, or is incorrectly named
+- improperly formatted files
+- missing values
+- spelling errors
+- incorrectly named parameters
+
+```{r}
+
+```
+

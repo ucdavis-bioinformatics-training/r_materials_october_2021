@@ -1,0 +1,29 @@
+---
+title: "Installing packages"
+author: "UC Davis Bioinformatics Core"
+date: "10/21/2021"
+output: html_document
+---
+
+# Installing packages
+
+```{r}
+if (!("BiocManager" %in% rownames(installed.packages()))){
+  install.packages("BiocManager")
+}
+if (!("ggplot2" %in% rownames(installed.packages()))){
+  install.packages("ggplot2")
+}
+if (!("tidyr" %in% rownames(installed.packages()))){
+  install.packages("tidyr")
+}
+if (!("dplyr" %in% rownames(installed.packages()))){
+  install.packages("dplyr")
+}
+if (!("magrittr" %in% rownames(installed.packages()))){
+  install.packages("magrittr")
+}
+if (!("viridis" %in% rownames(installed.packages()))){
+  install.packages("viridis")
+}
+```

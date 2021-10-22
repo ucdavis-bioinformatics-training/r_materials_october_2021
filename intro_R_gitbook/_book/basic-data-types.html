@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Basic data types | Troubleshooting</title>
+  <meta name="description" content="4 Basic data types | Troubleshooting" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Basic data types | Troubleshooting" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Basic data types | Troubleshooting" />
+  
+  
+  
+
+<meta name="author" content="UC Davis Bioinformatics Core" />
+
+
+<meta name="date" content="2021-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-frames.html"/>
+<link rel="next" href="functions.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R for Bioinformatics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html"><i class="fa fa-check"></i><b>1</b> RStudio and R notebooks</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#rstudio-1"><i class="fa fa-check"></i><b>1.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#r-notebooks"><i class="fa fa-check"></i><b>1.2</b> R notebooks</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html"><i class="fa fa-check"></i><b>2</b> Importing and exporting data</a></li>
+<li class="chapter" data-level="3" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>3</b> Data frames</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-frames.html"><a href="data-frames.html#structure-of-a-data-frame"><i class="fa fa-check"></i><b>3.1</b> Structure of a data frame</a></li>
+<li class="chapter" data-level="3.2" data-path="data-frames.html"><a href="data-frames.html#selecting-a-single-column-using-the-and-operators"><i class="fa fa-check"></i><b>3.2</b> Selecting a single column using the $ and [[ operators</a></li>
+<li class="chapter" data-level="3.3" data-path="data-frames.html"><a href="data-frames.html#selecting-a-subset-of-the-data-frame-using-the-operator"><i class="fa fa-check"></i><b>3.3</b> Selecting a subset of the data frame using the [ operator</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-frames.html"><a href="data-frames.html#subsetting-a-vector"><i class="fa fa-check"></i><b>3.3.1</b> Subsetting a vector</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-data-types.html"><a href="basic-data-types.html"><i class="fa fa-check"></i><b>4</b> Basic data types</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="basic-data-types.html"><a href="basic-data-types.html#understanding-class"><i class="fa fa-check"></i><b>4.1</b> Understanding class</a></li>
+<li class="chapter" data-level="4.2" data-path="basic-data-types.html"><a href="basic-data-types.html#coercion-converting-between-classes"><i class="fa fa-check"></i><b>4.2</b> Coercion: converting between classes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#basic-functions"><i class="fa fa-check"></i><b>5.1</b> Basic functions</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#combining-functions"><i class="fa fa-check"></i><b>5.2</b> Combining functions</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#the-apply-family-of-functions"><i class="fa fa-check"></i><b>5.3</b> The apply() family of functions</a></li>
+<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#custom-functions"><i class="fa fa-check"></i><b>5.4</b> Custom functions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-packages.html"><a href="installing-packages.html"><i class="fa fa-check"></i><b>6</b> Installing packages</a></li>
+<li class="chapter" data-level="7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Introduction to the tidyverse</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#defining-tidy-data"><i class="fa fa-check"></i><b>7.1</b> Defining tidy data</a></li>
+<li class="chapter" data-level="7.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#pipes-combining-tidyverse-functions"><i class="fa fa-check"></i><b>7.2</b> Pipes: combining tidyverse functions</a></li>
+<li class="chapter" data-level="7.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#transforming-data"><i class="fa fa-check"></i><b>7.3</b> Transforming data</a></li>
+<li class="chapter" data-level="7.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#summarizing-data"><i class="fa fa-check"></i><b>7.4</b> Summarizing data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>8</b> Visualizations</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualizations.html"><a href="visualizations.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>8.1</b> Histograms and density plots</a></li>
+<li class="chapter" data-level="8.2" data-path="visualizations.html"><a href="visualizations.html#bar-charts"><i class="fa fa-check"></i><b>8.2</b> Bar charts</a></li>
+<li class="chapter" data-level="8.3" data-path="visualizations.html"><a href="visualizations.html#box-and-violin-plots"><i class="fa fa-check"></i><b>8.3</b> Box and violin plots</a></li>
+<li class="chapter" data-level="8.4" data-path="visualizations.html"><a href="visualizations.html#scatter-plots"><i class="fa fa-check"></i><b>8.4</b> Scatter plots</a></li>
+<li class="chapter" data-level="8.5" data-path="visualizations.html"><a href="visualizations.html#heat-maps"><i class="fa fa-check"></i><b>8.5</b> Heat maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i><b>9</b> Troubleshooting</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Troubleshooting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basic-data-types" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Basic data types</h1>
+<p>We have already said that logical values can be used to subset a data frame, and all the values in a given column of a data frame must be of the same type But what does this mean?</p>
+<div id="understanding-class" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Understanding class</h2>
+<p>When R prints the birthweight data frame, you can see a line with three letter codes like <code>&lt;int&gt;</code> and <code>&lt;chr&gt;</code> just underneath the column headers. These describe the <em>class</em>, or type, of data found in the column. R has the following basic data classes:</p>
+<ul>
+<li>numeric (includes integer and double)</li>
+<li>character</li>
+<li>logical</li>
+<li>complex</li>
+<li>raw</li>
+</ul>
+<p>Generally, in bioinformatics, values belong to one of the first three classes. Read more about the complex and raw data types <a href="https://r-coder.com/data-types-r/">here</a>.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basic-data-types.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(birthweight<span class="sc">$</span>birthweight)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basic-data-types.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(birthweight<span class="sc">$</span>smoker)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basic-data-types.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(birthweight<span class="sc">$</span>geriatric.pregnancy)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>The integer and numeric categories are fairly self-explanatory. What are character and logical?</p>
+<p>Character values are exactly what they sound like: stored characters (letters and / or numbers). In the birthweight table, the “birth.date” and “location” columns contain character values.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-data-types.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(birthweight<span class="sc">$</span>location)</span></code></pre></div>
+<pre><code>## [1] &quot;General&quot;     &quot;Silver Hill&quot; &quot;Silver Hill&quot; &quot;Silver Hill&quot; &quot;Memorial&quot;   
+## [6] &quot;Memorial&quot;</code></pre>
+<p>Logical values are TRUE, FALSE, or NA (missing). Logical values are the result of comparing one item to another with <em>relational operators</em>.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-data-types.html#cb59-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>head.circumference <span class="sc">&gt;</span> <span class="dv">35</span>, <span class="fu">c</span>(<span class="st">&quot;length&quot;</span>, <span class="st">&quot;weeks.gestation&quot;</span>, <span class="st">&quot;maternal.height&quot;</span>, <span class="st">&quot;paternal.height&quot;</span>)]</span></code></pre></div>
+<pre><code>##    length weeks.gestation maternal.height paternal.height
+## 1      52              38             164              NA
+## 4      53              41             161             175
+## 7      52              40             170             181
+## 15     53              40             171             183
+## 16     53              40             170             185
+## 18     49              40             152             170
+## 20     58              41             173             180
+## 21     54              38             172             172
+## 23     52              39             170             178
+## 25     51              38             165              NA
+## 31     58              41             172             185
+## 33     51              40             168             181
+## 34     51              39             157              NA
+## 35     54              42             175             184
+## 42     53              44             174             189</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="basic-data-types.html#cb61-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>maternal.age <span class="sc">&lt;=</span> <span class="dv">20</span>, <span class="fu">c</span>(<span class="st">&quot;location&quot;</span>, <span class="st">&quot;maternal.age&quot;</span>, <span class="st">&quot;paternal.age&quot;</span>)]</span></code></pre></div>
+<pre><code>##       location maternal.age paternal.age
+## 11    Memorial           20           22
+## 14    Memorial           19           20
+## 15 Silver Hill           19           19
+## 16    Memorial           20           24
+## 21 Silver Hill           18           20
+## 22 Silver Hill           20           23
+## 26     General           20           23
+## 28     General           20           20
+## 37 Silver Hill           20           20
+## 39     General           19           NA
+## 42 Silver Hill           20           26</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-data-types.html#cb63-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>paternal.education <span class="sc">==</span> <span class="dv">10</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">13</span><span class="sc">:</span><span class="dv">16</span>)]</span></code></pre></div>
+<pre><code>##        ID paternal.age paternal.education paternal.cigarettes paternal.height
+## NA     NA           NA                 NA                  NA              NA
+## NA.1   NA           NA                 NA                  NA              NA
+## 7     365           30                 10                  25             181
+## 24    321           39                 10                   0             171
+## NA.2   NA           NA                 NA                  NA              NA
+## 26   1360           23                 10                  35             179
+## 28   1363           20                 10                  35             185
+## NA.3   NA           NA                 NA                  NA              NA
+## 36   1191           21                 10                  25             185
+## 37    431           20                 10                  35             180
+## NA.4   NA           NA                 NA                  NA              NA</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basic-data-types.html#cb65-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>weeks.gestation <span class="sc">!=</span> <span class="dv">40</span>, <span class="st">&quot;weeks.gestation&quot;</span>]</span></code></pre></div>
+<pre><code>##  [1] 38 39 41 41 39 39 34 38 38 38 41 37 39 41 38 35 39 37 38 44 41 37 41 41 35
+## [26] 39 42 42 33 33 39 45 44</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basic-data-types.html#cb67-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>location <span class="sc">==</span> <span class="st">&quot;General&quot;</span>,]</span></code></pre></div>
+<pre><code>##      ID birth.date location length birthweight head.circumference
+## 1  1107  1/25/1967  General     52        3.23                 36
+## 17  820  10/7/1967  General     52        3.77                 34
+## 18  752 10/19/1967  General     49        3.32                 36
+## 26 1360  2/16/1968  General     56        4.55                 34
+## 28 1363   4/2/1968  General     48        2.37                 30
+## 33 1088  7/24/1968  General     51        3.27                 36
+## 36 1191   9/7/1968  General     53        3.65                 33
+## 39 1600  10/9/1968  General     53        2.90                 34
+## 40  532 10/25/1968  General     53        3.59                 34
+## 41  223 12/11/1968  General     50        3.87                 33
+##    weeks.gestation smoker maternal.age maternal.cigarettes maternal.height
+## 1               38     no           31                   0             164
+## 17              40     no           24                   0             157
+## 18              40    yes           27                  12             152
+## 26              44     no           20                   0             162
+## 28              37    yes           20                   7             163
+## 33              40     no           24                   0             168
+## 36              42     no           21                   0             165
+## 39              39     no           19                   0             165
+## 40              40    yes           31                  12             163
+## 41              45    yes           28                  25             163
+##    maternal.prepregnant.weight paternal.age paternal.education
+## 1                           57           NA                 NA
+## 17                          50           31                 16
+## 18                          48           37                 12
+## 26                          57           23                 10
+## 28                          47           20                 10
+## 33                          53           29                 16
+## 36                          61           21                 10
+## 39                          57           NA                 NA
+## 40                          49           41                 12
+## 41                          54           30                 16
+##    paternal.cigarettes paternal.height low.birthweight geriatric.pregnancy
+## 1                   NA              NA               0               FALSE
+## 17                   0             173               0               FALSE
+## 18                  25             170               0               FALSE
+## 26                  35             179               0               FALSE
+## 28                  35             185               1               FALSE
+## 33                   0             181               0               FALSE
+## 36                  25             185               0               FALSE
+## 39                  NA              NA               0               FALSE
+## 40                  50             191               0               FALSE
+## 41                   0             183               0               FALSE</code></pre>
+<p>Many of R’s functions also return logical values.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basic-data-types.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(birthweight<span class="sc">$</span>ID)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basic-data-types.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(birthweight<span class="sc">$</span>smoker)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="coercion-converting-between-classes" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Coercion: converting between classes</h2>
+<p>The birthweight data frame has three columns that should probably be logical values: “smoker”, “low.birthweight”, and “geriatric.pregnancy”. All of these are questions that can be answered with TRUE/FALSE. However, only “geriatric.pregnancy” is stored as a logical value. Storing “smoker” and “low.birthweight” as logical values would be more useful, since it allows us to subset the data frame more easily.</p>
+<p>Changing the class of data is known as <em>coercion</em>.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basic-data-types.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(birthweight<span class="sc">$</span>low.birthweight)</span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+## [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+## [37]  TRUE  TRUE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basic-data-types.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(birthweight<span class="sc">$</span>smoker)</span></code></pre></div>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+## [26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA</code></pre>
+<p>The <code>as.logical()</code> function converted “low.birthweight” to a logical vector, but could not convert “smoker,” and returned a vector of missing data denoted by NA. Why is this?</p>
+<p>The coercion rule in R is as follows:</p>
+<p>logical -&gt; integer -&gt; numeric -&gt; complex -&gt; character</p>
+<p>R can convert logical values to integers, store integers as the more general numeric type, or represent numeric data as a character, but these coercion operations cannot always be reversed without losing information.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="basic-data-types.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(birthweight<span class="sc">$</span>geriatric.pregnancy)</span></code></pre></div>
+<pre><code>##  [1] 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0
+## [39] 0 0 0 0</code></pre>
+<p>The <code>as.logical()</code> function only operates on “low.birthweight” the way we want because the data was encoded as 0s and 1s. If <em>any other numbers</em> were used, the results might be unexpected.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="basic-data-types.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(birthweight<span class="sc">$</span>maternal.age)</span></code></pre></div>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<p>Let’s convert the “low.birthweight” column to logical.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="basic-data-types.html#cb81-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>low.birthweight <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(birthweight<span class="sc">$</span>low.birthweight)</span>
+<span id="cb81-2"><a href="basic-data-types.html#cb81-2" aria-hidden="true" tabindex="-1"></a>birthweight</span></code></pre></div>
+<pre><code>##      ID birth.date    location length birthweight head.circumference
+## 1  1107  1/25/1967     General     52        3.23                 36
+## 2   697   2/6/1967 Silver Hill     48        3.03                 35
+## 3  1683  2/14/1967 Silver Hill     53        3.35                 33
+## 4    27   3/9/1967 Silver Hill     53        3.55                 37
+## 5  1522  3/13/1967    Memorial     50        2.74                 33
+## 6   569  3/23/1967    Memorial     50        2.51                 35
+## 7   365  4/23/1967    Memorial     52        3.53                 37
+## 8   808   5/5/1967 Silver Hill     48        2.92                 33
+## 9  1369   6/4/1967 Silver Hill     49        3.18                 34
+## 10 1023   6/7/1967    Memorial     52        3.00                 35
+## 11  822  6/14/1967    Memorial     50        3.42                 35
+## 12 1272  6/20/1967    Memorial     53        2.75                 32
+## 13 1262  6/25/1967 Silver Hill     53        3.19                 34
+## 14  575  7/12/1967    Memorial     50        2.78                 30
+## 15 1016  7/13/1967 Silver Hill     53        4.32                 36
+## 16  792   9/7/1967    Memorial     53        3.64                 38
+## 17  820  10/7/1967     General     52        3.77                 34
+## 18  752 10/19/1967     General     49        3.32                 36
+## 19  619  11/1/1967    Memorial     52        3.41                 33
+## 20 1764  12/7/1967 Silver Hill     58        4.57                 39
+## 21 1081 12/14/1967 Silver Hill     54        3.63                 38
+## 22  516   1/8/1968 Silver Hill     47        2.66                 33
+## 23  272  1/10/1968    Memorial     52        3.86                 36
+## 24  321  1/21/1968 Silver Hill     48        3.11                 33
+## 25 1636   2/2/1968 Silver Hill     51        3.93                 38
+## 26 1360  2/16/1968     General     56        4.55                 34
+## 27 1388  2/22/1968    Memorial     51        3.14                 33
+## 28 1363   4/2/1968     General     48        2.37                 30
+## 29 1058  4/24/1968 Silver Hill     53        3.15                 34
+## 30  755  4/25/1968    Memorial     53        3.20                 33
+## 31  462  6/19/1968 Silver Hill     58        4.10                 39
+## 32  300  7/18/1968 Silver Hill     46        2.05                 32
+## 33 1088  7/24/1968     General     51        3.27                 36
+## 34   57  8/12/1968    Memorial     51        3.32                 38
+## 35  553  8/17/1968 Silver Hill     54        3.94                 37
+## 36 1191   9/7/1968     General     53        3.65                 33
+## 37  431  9/16/1968 Silver Hill     48        1.92                 30
+## 38 1313  9/27/1968 Silver Hill     43        2.65                 32
+## 39 1600  10/9/1968     General     53        2.90                 34
+## 40  532 10/25/1968     General     53        3.59                 34
+## 41  223 12/11/1968     General     50        3.87                 33
+## 42 1187 12/19/1968 Silver Hill     53        4.07                 38
+##    weeks.gestation smoker maternal.age maternal.cigarettes maternal.height
+## 1               38     no           31                   0             164
+## 2               39     no           27                   0             162
+## 3               41     no           27                   0             164
+## 4               41    yes           37                  25             161
+## 5               39    yes           21                  17             156
+## 6               39    yes           22                   7             159
+## 7               40    yes           26                  25             170
+## 8               34     no           26                   0             167
+## 9               38    yes           31                  25             162
+## 10              38    yes           30                  12             165
+## 11              38     no           20                   0             157
+## 12              40    yes           37                  50             168
+## 13              41    yes           27                  35             163
+## 14              37    yes           19                   7             165
+## 15              40     no           19                   0             171
+## 16              40    yes           20                   2             170
+## 17              40     no           24                   0             157
+## 18              40    yes           27                  12             152
+## 19              39    yes           23                  25             181
+## 20              41    yes           32                  12             173
+## 21              38     no           18                   0             172
+## 22              35    yes           20                  35             170
+## 23              39    yes           30                  25             170
+## 24              37     no           28                   0             158
+## 25              38     no           29                   0             165
+## 26              44     no           20                   0             162
+## 27              41    yes           22                   7             160
+## 28              37    yes           20                   7             163
+## 29              40     no           29                   0             167
+## 30              41     no           21                   0             155
+## 31              41     no           35                   0             172
+## 32              35    yes           41                   7             166
+## 33              40     no           24                   0             168
+## 34              39    yes           23                  17             157
+## 35              42     no           24                   0             175
+## 36              42     no           21                   0             165
+## 37              33    yes           20                   7             161
+## 38              33     no           24                   0             149
+## 39              39     no           19                   0             165
+## 40              40    yes           31                  12             163
+## 41              45    yes           28                  25             163
+## 42              44     no           20                   0             174
+##    maternal.prepregnant.weight paternal.age paternal.education
+## 1                           57           NA                 NA
+## 2                           62           27                 14
+## 3                           62           37                 14
+## 4                           66           46                 NA
+## 5                           53           24                 12
+## 6                           52           23                 14
+## 7                           62           30                 10
+## 8                           64           25                 12
+## 9                           57           32                 16
+## 10                          64           38                 14
+## 11                          48           22                 14
+## 12                          61           31                 16
+## 13                          51           31                 16
+## 14                          60           20                 14
+## 15                          62           19                 12
+## 16                          59           24                 12
+## 17                          50           31                 16
+## 18                          48           37                 12
+## 19                          69           23                 16
+## 20                          70           38                 14
+## 21                          50           20                 12
+## 22                          57           23                 12
+## 23                          78           40                 16
+## 24                          54           39                 10
+## 25                          61           NA                 NA
+## 26                          57           23                 10
+## 27                          53           24                 16
+## 28                          47           20                 10
+## 29                          60           30                 16
+## 30                          55           25                 14
+## 31                          58           31                 16
+## 32                          57           37                 14
+## 33                          53           29                 16
+## 34                          48           NA                 NA
+## 35                          66           30                 12
+## 36                          61           21                 10
+## 37                          50           20                 10
+## 38                          45           26                 16
+## 39                          57           NA                 NA
+## 40                          49           41                 12
+## 41                          54           30                 16
+## 42                          68           26                 14
+##    paternal.cigarettes paternal.height low.birthweight geriatric.pregnancy
+## 1                   NA              NA           FALSE               FALSE
+## 2                    0             178           FALSE               FALSE
+## 3                    0             170           FALSE               FALSE
+## 4                    0             175           FALSE                TRUE
+## 5                    7             179           FALSE               FALSE
+## 6                   25              NA            TRUE               FALSE
+## 7                   25             181           FALSE               FALSE
+## 8                   25             175           FALSE               FALSE
+## 9                   50             194           FALSE               FALSE
+## 10                  50             180           FALSE               FALSE
+## 11                   0             179           FALSE               FALSE
+## 12                   0             173           FALSE                TRUE
+## 13                  25             185           FALSE               FALSE
+## 14                   0             183           FALSE               FALSE
+## 15                   0             183           FALSE               FALSE
+## 16                  12             185           FALSE               FALSE
+## 17                   0             173           FALSE               FALSE
+## 18                  25             170           FALSE               FALSE
+## 19                   2             181           FALSE               FALSE
+## 20                  25             180           FALSE               FALSE
+## 21                   7             172           FALSE               FALSE
+## 22                  50             186            TRUE               FALSE
+## 23                  50             178           FALSE               FALSE
+## 24                   0             171           FALSE               FALSE
+## 25                  NA              NA           FALSE               FALSE
+## 26                  35             179           FALSE               FALSE
+## 27                  12             176           FALSE               FALSE
+## 28                  35             185            TRUE               FALSE
+## 29                  NA             182           FALSE               FALSE
+## 30                  25             183           FALSE               FALSE
+## 31                  25             185           FALSE                TRUE
+## 32                  25             173            TRUE                TRUE
+## 33                   0             181           FALSE               FALSE
+## 34                  NA              NA           FALSE               FALSE
+## 35                   0             184           FALSE               FALSE
+## 36                  25             185           FALSE               FALSE
+## 37                  35             180            TRUE               FALSE
+## 38                   0             169            TRUE               FALSE
+## 39                  NA              NA           FALSE               FALSE
+## 40                  50             191           FALSE               FALSE
+## 41                   0             183           FALSE               FALSE
+## 42                  25             189           FALSE               FALSE</code></pre>
+<p>Simple coercion is not going to convert the “smoker” column from character to logical. However, because the result of a relational operation is a vector of logical values, the “yes” and “no” values are easily converted to logical valuess.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="basic-data-types.html#cb83-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>smoker <span class="sc">==</span> <span class="st">&quot;yes&quot;</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE
+## [13]  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE
+## [25] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
+## [37]  TRUE FALSE FALSE  TRUE  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="basic-data-types.html#cb85-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>smoker <span class="ot">&lt;-</span> (birthweight<span class="sc">$</span>smoker <span class="sc">==</span> <span class="st">&quot;yes&quot;</span>)</span>
+<span id="cb85-2"><a href="basic-data-types.html#cb85-2" aria-hidden="true" tabindex="-1"></a>birthweight</span></code></pre></div>
+<pre><code>##      ID birth.date    location length birthweight head.circumference
+## 1  1107  1/25/1967     General     52        3.23                 36
+## 2   697   2/6/1967 Silver Hill     48        3.03                 35
+## 3  1683  2/14/1967 Silver Hill     53        3.35                 33
+## 4    27   3/9/1967 Silver Hill     53        3.55                 37
+## 5  1522  3/13/1967    Memorial     50        2.74                 33
+## 6   569  3/23/1967    Memorial     50        2.51                 35
+## 7   365  4/23/1967    Memorial     52        3.53                 37
+## 8   808   5/5/1967 Silver Hill     48        2.92                 33
+## 9  1369   6/4/1967 Silver Hill     49        3.18                 34
+## 10 1023   6/7/1967    Memorial     52        3.00                 35
+## 11  822  6/14/1967    Memorial     50        3.42                 35
+## 12 1272  6/20/1967    Memorial     53        2.75                 32
+## 13 1262  6/25/1967 Silver Hill     53        3.19                 34
+## 14  575  7/12/1967    Memorial     50        2.78                 30
+## 15 1016  7/13/1967 Silver Hill     53        4.32                 36
+## 16  792   9/7/1967    Memorial     53        3.64                 38
+## 17  820  10/7/1967     General     52        3.77                 34
+## 18  752 10/19/1967     General     49        3.32                 36
+## 19  619  11/1/1967    Memorial     52        3.41                 33
+## 20 1764  12/7/1967 Silver Hill     58        4.57                 39
+## 21 1081 12/14/1967 Silver Hill     54        3.63                 38
+## 22  516   1/8/1968 Silver Hill     47        2.66                 33
+## 23  272  1/10/1968    Memorial     52        3.86                 36
+## 24  321  1/21/1968 Silver Hill     48        3.11                 33
+## 25 1636   2/2/1968 Silver Hill     51        3.93                 38
+## 26 1360  2/16/1968     General     56        4.55                 34
+## 27 1388  2/22/1968    Memorial     51        3.14                 33
+## 28 1363   4/2/1968     General     48        2.37                 30
+## 29 1058  4/24/1968 Silver Hill     53        3.15                 34
+## 30  755  4/25/1968    Memorial     53        3.20                 33
+## 31  462  6/19/1968 Silver Hill     58        4.10                 39
+## 32  300  7/18/1968 Silver Hill     46        2.05                 32
+## 33 1088  7/24/1968     General     51        3.27                 36
+## 34   57  8/12/1968    Memorial     51        3.32                 38
+## 35  553  8/17/1968 Silver Hill     54        3.94                 37
+## 36 1191   9/7/1968     General     53        3.65                 33
+## 37  431  9/16/1968 Silver Hill     48        1.92                 30
+## 38 1313  9/27/1968 Silver Hill     43        2.65                 32
+## 39 1600  10/9/1968     General     53        2.90                 34
+## 40  532 10/25/1968     General     53        3.59                 34
+## 41  223 12/11/1968     General     50        3.87                 33
+## 42 1187 12/19/1968 Silver Hill     53        4.07                 38
+##    weeks.gestation smoker maternal.age maternal.cigarettes maternal.height
+## 1               38  FALSE           31                   0             164
+## 2               39  FALSE           27                   0             162
+## 3               41  FALSE           27                   0             164
+## 4               41   TRUE           37                  25             161
+## 5               39   TRUE           21                  17             156
+## 6               39   TRUE           22                   7             159
+## 7               40   TRUE           26                  25             170
+## 8               34  FALSE           26                   0             167
+## 9               38   TRUE           31                  25             162
+## 10              38   TRUE           30                  12             165
+## 11              38  FALSE           20                   0             157
+## 12              40   TRUE           37                  50             168
+## 13              41   TRUE           27                  35             163
+## 14              37   TRUE           19                   7             165
+## 15              40  FALSE           19                   0             171
+## 16              40   TRUE           20                   2             170
+## 17              40  FALSE           24                   0             157
+## 18              40   TRUE           27                  12             152
+## 19              39   TRUE           23                  25             181
+## 20              41   TRUE           32                  12             173
+## 21              38  FALSE           18                   0             172
+## 22              35   TRUE           20                  35             170
+## 23              39   TRUE           30                  25             170
+## 24              37  FALSE           28                   0             158
+## 25              38  FALSE           29                   0             165
+## 26              44  FALSE           20                   0             162
+## 27              41   TRUE           22                   7             160
+## 28              37   TRUE           20                   7             163
+## 29              40  FALSE           29                   0             167
+## 30              41  FALSE           21                   0             155
+## 31              41  FALSE           35                   0             172
+## 32              35   TRUE           41                   7             166
+## 33              40  FALSE           24                   0             168
+## 34              39   TRUE           23                  17             157
+## 35              42  FALSE           24                   0             175
+## 36              42  FALSE           21                   0             165
+## 37              33   TRUE           20                   7             161
+## 38              33  FALSE           24                   0             149
+## 39              39  FALSE           19                   0             165
+## 40              40   TRUE           31                  12             163
+## 41              45   TRUE           28                  25             163
+## 42              44  FALSE           20                   0             174
+##    maternal.prepregnant.weight paternal.age paternal.education
+## 1                           57           NA                 NA
+## 2                           62           27                 14
+## 3                           62           37                 14
+## 4                           66           46                 NA
+## 5                           53           24                 12
+## 6                           52           23                 14
+## 7                           62           30                 10
+## 8                           64           25                 12
+## 9                           57           32                 16
+## 10                          64           38                 14
+## 11                          48           22                 14
+## 12                          61           31                 16
+## 13                          51           31                 16
+## 14                          60           20                 14
+## 15                          62           19                 12
+## 16                          59           24                 12
+## 17                          50           31                 16
+## 18                          48           37                 12
+## 19                          69           23                 16
+## 20                          70           38                 14
+## 21                          50           20                 12
+## 22                          57           23                 12
+## 23                          78           40                 16
+## 24                          54           39                 10
+## 25                          61           NA                 NA
+## 26                          57           23                 10
+## 27                          53           24                 16
+## 28                          47           20                 10
+## 29                          60           30                 16
+## 30                          55           25                 14
+## 31                          58           31                 16
+## 32                          57           37                 14
+## 33                          53           29                 16
+## 34                          48           NA                 NA
+## 35                          66           30                 12
+## 36                          61           21                 10
+## 37                          50           20                 10
+## 38                          45           26                 16
+## 39                          57           NA                 NA
+## 40                          49           41                 12
+## 41                          54           30                 16
+## 42                          68           26                 14
+##    paternal.cigarettes paternal.height low.birthweight geriatric.pregnancy
+## 1                   NA              NA           FALSE               FALSE
+## 2                    0             178           FALSE               FALSE
+## 3                    0             170           FALSE               FALSE
+## 4                    0             175           FALSE                TRUE
+## 5                    7             179           FALSE               FALSE
+## 6                   25              NA            TRUE               FALSE
+## 7                   25             181           FALSE               FALSE
+## 8                   25             175           FALSE               FALSE
+## 9                   50             194           FALSE               FALSE
+## 10                  50             180           FALSE               FALSE
+## 11                   0             179           FALSE               FALSE
+## 12                   0             173           FALSE                TRUE
+## 13                  25             185           FALSE               FALSE
+## 14                   0             183           FALSE               FALSE
+## 15                   0             183           FALSE               FALSE
+## 16                  12             185           FALSE               FALSE
+## 17                   0             173           FALSE               FALSE
+## 18                  25             170           FALSE               FALSE
+## 19                   2             181           FALSE               FALSE
+## 20                  25             180           FALSE               FALSE
+## 21                   7             172           FALSE               FALSE
+## 22                  50             186            TRUE               FALSE
+## 23                  50             178           FALSE               FALSE
+## 24                   0             171           FALSE               FALSE
+## 25                  NA              NA           FALSE               FALSE
+## 26                  35             179           FALSE               FALSE
+## 27                  12             176           FALSE               FALSE
+## 28                  35             185            TRUE               FALSE
+## 29                  NA             182           FALSE               FALSE
+## 30                  25             183           FALSE               FALSE
+## 31                  25             185           FALSE                TRUE
+## 32                  25             173            TRUE                TRUE
+## 33                   0             181           FALSE               FALSE
+## 34                  NA              NA           FALSE               FALSE
+## 35                   0             184           FALSE               FALSE
+## 36                  25             185           FALSE               FALSE
+## 37                  35             180            TRUE               FALSE
+## 38                   0             169            TRUE               FALSE
+## 39                  NA              NA           FALSE               FALSE
+## 40                  50             191           FALSE               FALSE
+## 41                   0             183           FALSE               FALSE
+## 42                  25             189           FALSE               FALSE</code></pre>
+<p>Converting the dates (currently stored as characters) to a more useable format is not as simple, and will require another function.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-frames.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

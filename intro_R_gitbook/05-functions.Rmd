@@ -1,0 +1,148 @@
+---
+title: "Functions"
+author: "UC Davis Bioinformatics Core"
+date: "10/21/2021"
+output: html_document
+---
+
+# Functions
+
+R is filled with functions. We have already used a few: `read.csv()`, `class()`, `dim()`, `mean()`, `colnames()`, `as.logical()`, and `as.numeric()`. To find the documentation on a function, use the `?` character. This opens a page containing details on the function in the help pane.
+
+## Basic functions
+
+```{r}
+?table
+table(birthweight$geriatric.pregnancy, birthweight$low.birthweight)
+```
+
+Functions are invoked by name, with any arguments provided inside of parentheses. For example, the `chisq.test()` function, which runs a Chi-squared test, requires either a matrix or two vectors as arguments, and provides a number of options that may be set by the user.
+
+```{r}
+?chisq.test
+chisq.test(birthweight$geriatric.pregnancy, birthweight$low.birthweight)
+```
+
+If no parameters are provided to the options, the default values are used.
+
+```{r}
+mean(birthweight$birthweight[birthweight$geriatric.pregnancy])
+# the ! character is used for negation
+mean(birthweight$birthweight[!birthweight$geriatric.pregnancy])
+```
+
+In some cases, this is acceptable.
+
+```{r}
+mean(birthweight$paternal.age)
+mean(birthweight$paternal.age, na.rm = TRUE)
+sd(birthweight$paternal.age, na.rm = TRUE)
+```
+
+Other times, it is necessary to adjust the options.
+
+## Combining functions
+
+The "birth.date" column is currently stored as a character vector. But what if we wanted to look at the birth weights of babies born in December? Let's split the day, month, and year into separate columns.
+
+R has a function called `strsplit()`:
+
+```{r}
+?strsplit
+strsplit(birthweight$birth.date, split = "/")
+```
+
+This is a good start. However, the output of `strsplit()` is a list containing 42 vectors of length 3, while the columns of birthweight are vectors of length 42.
+
+**A note on lists:**
+
+Lists are ordered collections of objects, which can be of any type. Unlike vectors, lists may contain elements of different types. To subset a list, use the \$ or [[ operator.
+
+```{r}
+unlist(strsplit(birthweight$birth.date, split = "/"))
+```
+
+When functions are "nested," the operation in the innermost set of parentheses is performed first. In the example above, the `unlist()` function is applied to the output of `strsplit()`, changing a list to a vector. Since the goal was to split one column into three columns, this combination of functions is not effective.
+
+## The apply() family of functions
+
+One of the most useful groups of functions in R is the `apply()` family of functions. This group of functions execute (or *apply*) a provided function to every element of a data structure.
+
+**apply** takes a matrix, applies a function either by row or by column, and returns a vector.
+
+```{r}
+# by row
+apply(birthweight[,c("maternal.cigarettes", "paternal.cigarettes")], 1, sum)
+# by column
+apply(birthweight[,c("maternal.cigarettes", "paternal.cigarettes")], 2, sum)
+```
+
+**mapply** takes a function and applies it to the elements of one or more vectors.
+
+```{r}
+mapply(sum, birthweight$maternal.cigarettes, birthweight$paternal.cigarettes)
+```
+
+**tapply** takes two vectors, applies a function to the subsets of the first based on the categories in the second vector, and returns a table.
+
+```{r}
+tapply(birthweight$birthweight, birthweight$smoker, mean)
+```
+
+**lapply** takes a list, applies a function to each element, and returns a list.
+
+**sapply** takes a list, applies a function to each element, and returns a list that has been simplified as much as possible.
+
+```{r}
+lapply(strsplit(birthweight$birth.date, split = "/"), '[[', 1)
+sapply(strsplit(birthweight$birth.date, split = "/"), '[[', 1)
+```
+
+The result of this nested pair of functions is a vector of months encoded as numbers.
+
+## Custom functions
+
+What if we want to do this for all three fields, but we don't want to write the code three times?
+
+Take a few minutes to dissect the following function, working from the inside out. What does each piece do?
+
+```{r}
+# custom function takes a vector of dates and returns a data frame with columns day, month, and year
+split_MMDDYYYY <- function(date_vector){
+  date_list = lapply(seq(1:3), function(i){
+    as.integer(sapply(strsplit(date_vector, split = "/"), '[[', i))
+  })
+  names(date_list) = c("month", "day", "year")
+  as.data.frame(do.call("cbind", date_list))
+}
+
+split_MMDDYYYY(birthweight$birth.date)
+```
+```{r}
+birthweight <- cbind(birthweight, split_MMDDYYYY(birthweight$birth.date))
+```
+
+The `cbind()` function combines objects by column. Now that we have the birth month in its own column, we can get the mean of birth weight by month.
+
+```{r}
+tapply(birthweight$birthweight, birthweight$month, mean)
+```
+
+**Merging data frames**
+
+For this example experiment, we also have placental miRNA expression data. These values are not from real samples, due to patient privacy concerns, but have been manipulated to roughly reproduce the effect observed by [Maccani et al. 2010](https://www.tandfonline.com/doi/full/10.4161/epi.5.7.12762).
+
+```{r}
+mir <- read.csv("datasets/miRNA.csv", row.names = 1)
+mir
+```
+
+In this object, the rows are the gene identifiers, and the columns are the samples.
+
+```{r}
+mir <- as.data.frame(t(mir))
+mir$ID <- gsub("sample.", "", rownames(mir))
+experiment <- merge(birthweight, mir)
+experiment
+```
+

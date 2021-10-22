@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Visualizations | Troubleshooting</title>
+  <meta name="description" content="8 Visualizations | Troubleshooting" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Visualizations | Troubleshooting" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Visualizations | Troubleshooting" />
+  
+  
+  
+
+<meta name="author" content="UC Davis Bioinformatics Core" />
+
+
+<meta name="date" content="2021-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-the-tidyverse.html"/>
+<link rel="next" href="troubleshooting.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R for Bioinformatics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i>About this course</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#rstudio"><i class="fa fa-check"></i>RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html"><i class="fa fa-check"></i><b>1</b> RStudio and R notebooks</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#rstudio-1"><i class="fa fa-check"></i><b>1.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#r-notebooks"><i class="fa fa-check"></i><b>1.2</b> R notebooks</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html"><i class="fa fa-check"></i><b>2</b> Importing and exporting data</a></li>
+<li class="chapter" data-level="3" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>3</b> Data frames</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-frames.html"><a href="data-frames.html#structure-of-a-data-frame"><i class="fa fa-check"></i><b>3.1</b> Structure of a data frame</a></li>
+<li class="chapter" data-level="3.2" data-path="data-frames.html"><a href="data-frames.html#selecting-a-single-column-using-the-and-operators"><i class="fa fa-check"></i><b>3.2</b> Selecting a single column using the $ and [[ operators</a></li>
+<li class="chapter" data-level="3.3" data-path="data-frames.html"><a href="data-frames.html#selecting-a-subset-of-the-data-frame-using-the-operator"><i class="fa fa-check"></i><b>3.3</b> Selecting a subset of the data frame using the [ operator</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-frames.html"><a href="data-frames.html#subsetting-a-vector"><i class="fa fa-check"></i><b>3.3.1</b> Subsetting a vector</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-data-types.html"><a href="basic-data-types.html"><i class="fa fa-check"></i><b>4</b> Basic data types</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="basic-data-types.html"><a href="basic-data-types.html#understanding-class"><i class="fa fa-check"></i><b>4.1</b> Understanding class</a></li>
+<li class="chapter" data-level="4.2" data-path="basic-data-types.html"><a href="basic-data-types.html#coercion-converting-between-classes"><i class="fa fa-check"></i><b>4.2</b> Coercion: converting between classes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#basic-functions"><i class="fa fa-check"></i><b>5.1</b> Basic functions</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#combining-functions"><i class="fa fa-check"></i><b>5.2</b> Combining functions</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#the-apply-family-of-functions"><i class="fa fa-check"></i><b>5.3</b> The apply() family of functions</a></li>
+<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#custom-functions"><i class="fa fa-check"></i><b>5.4</b> Custom functions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-packages.html"><a href="installing-packages.html"><i class="fa fa-check"></i><b>6</b> Installing packages</a></li>
+<li class="chapter" data-level="7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Introduction to the tidyverse</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#defining-tidy-data"><i class="fa fa-check"></i><b>7.1</b> Defining tidy data</a></li>
+<li class="chapter" data-level="7.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#pipes-combining-tidyverse-functions"><i class="fa fa-check"></i><b>7.2</b> Pipes: combining tidyverse functions</a></li>
+<li class="chapter" data-level="7.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#transforming-data"><i class="fa fa-check"></i><b>7.3</b> Transforming data</a></li>
+<li class="chapter" data-level="7.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#summarizing-data"><i class="fa fa-check"></i><b>7.4</b> Summarizing data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>8</b> Visualizations</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualizations.html"><a href="visualizations.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>8.1</b> Histograms and density plots</a></li>
+<li class="chapter" data-level="8.2" data-path="visualizations.html"><a href="visualizations.html#bar-charts"><i class="fa fa-check"></i><b>8.2</b> Bar charts</a></li>
+<li class="chapter" data-level="8.3" data-path="visualizations.html"><a href="visualizations.html#box-and-violin-plots"><i class="fa fa-check"></i><b>8.3</b> Box and violin plots</a></li>
+<li class="chapter" data-level="8.4" data-path="visualizations.html"><a href="visualizations.html#scatter-plots"><i class="fa fa-check"></i><b>8.4</b> Scatter plots</a></li>
+<li class="chapter" data-level="8.5" data-path="visualizations.html"><a href="visualizations.html#heat-maps"><i class="fa fa-check"></i><b>8.5</b> Heat maps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i><b>9</b> Troubleshooting</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Troubleshooting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualizations" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Visualizations</h1>
+<p>The ggplot2 library is an extremely popular visualization package that provides an interface for extremely fine control over graphics for plotting. It is used by a number of of other popular packages in their built-in plotting functions. It provides a “grammar of graphics” that is quite useful to know.</p>
+<p><strong>A note about accessibility:</strong></p>
+<p>The default colors automatically selected by ggplot2 are not very user-friendly. Colors are chosen by sampling evenly hues on the color wheel. Because of this behavior, all of the colors have similar intensity, which means that they do not work in a gray-scale printing, and may be difficult to distinguish for users with atypical color vision. There are many resources for selecting color palettes online. Here are just a few:</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html">Viridis</a></li>
+<li><a href="https://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3">ColorBrewer</a></li>
+<li><a href="https://cran.r-project.org/web/packages/colorBlindness/vignettes/colorBlindness.html#Collection_of_safe_colors">colorBlindness Guide</a></li>
+<li><a href="https://accessibility.digital.gov/visual-design/color-and-contrast/">Digital Accessibility</a></li>
+<li><a href="https://personal.sron.nl/~pault/">Blog entry</a></li>
+</ul>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="visualizations.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb149-2"><a href="visualizations.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb149-3"><a href="visualizations.html#cb149-3" aria-hidden="true" tabindex="-1"></a>?viridis</span>
+<span id="cb149-4"><a href="visualizations.html#cb149-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb149-5"><a href="visualizations.html#cb149-5" aria-hidden="true" tabindex="-1"></a>locations.palette <span class="ot">&lt;-</span> <span class="fu">viridis</span>(<span class="dv">3</span>)</span>
+<span id="cb149-6"><a href="visualizations.html#cb149-6" aria-hidden="true" tabindex="-1"></a>smoking.palette <span class="ot">&lt;-</span> <span class="fu">inferno</span>(<span class="dv">2</span>, <span class="at">begin =</span> <span class="fl">0.5</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb149-7"><a href="visualizations.html#cb149-7" aria-hidden="true" tabindex="-1"></a>years.palette <span class="ot">&lt;-</span> <span class="fu">mako</span>(<span class="dv">2</span>, <span class="at">begin =</span> <span class="fl">0.4</span>, <span class="at">end =</span> <span class="fl">0.9</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb149-8"><a href="visualizations.html#cb149-8" aria-hidden="true" tabindex="-1"></a>genes.palette <span class="ot">&lt;-</span> <span class="fu">plasma</span>(<span class="dv">4</span>)</span></code></pre></div>
+<div id="histograms-and-density-plots" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Histograms and density plots</h2>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="visualizations.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> experiment, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> birthweight)) <span class="sc">+</span></span>
+<span id="cb150-2"><a href="visualizations.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb150-3"><a href="visualizations.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>location, <span class="at">nrow =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb150-4"><a href="visualizations.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;weight (kg)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;births&quot;</span>) <span class="sc">+</span></span>
+<span id="cb150-5"><a href="visualizations.html#cb150-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="visualizations.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> experiment, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> birthweight)) <span class="sc">+</span></span>
+<span id="cb151-2"><a href="visualizations.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb151-3"><a href="visualizations.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-2.png" width="672" /></p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="visualizations.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> experiment, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> birthweight)) <span class="sc">+</span></span>
+<span id="cb152-2"><a href="visualizations.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb152-3"><a href="visualizations.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>location, <span class="at">nrow =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb152-4"><a href="visualizations.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-3.png" width="672" /></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="visualizations.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> experiment,</span>
+<span id="cb153-2"><a href="visualizations.html#cb153-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> birthweight,</span>
+<span id="cb153-3"><a href="visualizations.html#cb153-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> location)) <span class="sc">+</span></span>
+<span id="cb153-4"><a href="visualizations.html#cb153-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb153-5"><a href="visualizations.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> locations.palette) <span class="sc">+</span></span>
+<span id="cb153-6"><a href="visualizations.html#cb153-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-4.png" width="672" /></p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="visualizations.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> experiment,</span>
+<span id="cb154-2"><a href="visualizations.html#cb154-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> birthweight,</span>
+<span id="cb154-3"><a href="visualizations.html#cb154-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> <span class="fu">as.factor</span>(year))) <span class="sc">+</span></span>
+<span id="cb154-4"><a href="visualizations.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb154-5"><a href="visualizations.html#cb154-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="fu">as.factor</span>(year), <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb154-6"><a href="visualizations.html#cb154-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> years.palette) <span class="sc">+</span></span>
+<span id="cb154-7"><a href="visualizations.html#cb154-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-5.png" width="672" /></p>
+</div>
+<div id="bar-charts" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Bar charts</h2>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="visualizations.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> experiment,</span>
+<span id="cb155-2"><a href="visualizations.html#cb155-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(month), <span class="at">fill =</span> <span class="fu">as.factor</span>(year))) <span class="sc">+</span></span>
+<span id="cb155-3"><a href="visualizations.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">preserve =</span> <span class="st">&quot;single&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb155-4"><a href="visualizations.html#cb155-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Birth month&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Samples&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb155-5"><a href="visualizations.html#cb155-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Colors: https://personal.sron.nl/~pault/&quot;</span>) <span class="sc">+</span></span>
+<span id="cb155-6"><a href="visualizations.html#cb155-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> years.palette) <span class="sc">+</span></span>
+<span id="cb155-7"><a href="visualizations.html#cb155-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="visualizations.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> experiment,</span>
+<span id="cb156-2"><a href="visualizations.html#cb156-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> maternal.cigarettes, <span class="at">fill =</span> location)) <span class="sc">+</span></span>
+<span id="cb156-3"><a href="visualizations.html#cb156-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">preserve =</span> <span class="st">&quot;single&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb156-4"><a href="visualizations.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Maternal Smoking (cigarettes / day)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Samples&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Collection Site&quot;</span>) <span class="sc">+</span></span>
+<span id="cb156-5"><a href="visualizations.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> locations.palette) <span class="sc">+</span></span>
+<span id="cb156-6"><a href="visualizations.html#cb156-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year) <span class="sc">+</span></span>
+<span id="cb156-7"><a href="visualizations.html#cb156-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-2.png" width="672" /></p>
+</div>
+<div id="box-and-violin-plots" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Box and violin plots</h2>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="visualizations.html#cb157-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb157-2"><a href="visualizations.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">22</span><span class="sc">:</span><span class="dv">25</span>),</span>
+<span id="cb157-3"><a href="visualizations.html#cb157-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;gene.id&quot;</span>,</span>
+<span id="cb157-4"><a href="visualizations.html#cb157-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;expression&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb157-5"><a href="visualizations.html#cb157-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> smoker, <span class="at">y =</span> expression, <span class="at">fill =</span> smoker)) <span class="sc">+</span></span>
+<span id="cb157-6"><a href="visualizations.html#cb157-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb157-7"><a href="visualizations.html#cb157-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> gene.id, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb157-8"><a href="visualizations.html#cb157-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> smoking.palette) <span class="sc">+</span></span>
+<span id="cb157-9"><a href="visualizations.html#cb157-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;non-smoker&quot;</span>, <span class="st">&quot;smoker&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb157-10"><a href="visualizations.html#cb157-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb157-11"><a href="visualizations.html#cb157-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;miRNA expression&quot;</span>) <span class="sc">+</span></span>
+<span id="cb157-12"><a href="visualizations.html#cb157-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb157-13"><a href="visualizations.html#cb157-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="visualizations.html#cb158-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb158-2"><a href="visualizations.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">22</span><span class="sc">:</span><span class="dv">25</span>),</span>
+<span id="cb158-3"><a href="visualizations.html#cb158-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;gene.id&quot;</span>,</span>
+<span id="cb158-4"><a href="visualizations.html#cb158-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;expression&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb158-5"><a href="visualizations.html#cb158-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> smoker, <span class="at">y =</span> expression, <span class="at">fill =</span> smoker)) <span class="sc">+</span></span>
+<span id="cb158-6"><a href="visualizations.html#cb158-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb158-7"><a href="visualizations.html#cb158-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> smoking.palette) <span class="sc">+</span></span>
+<span id="cb158-8"><a href="visualizations.html#cb158-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;non-smoker&quot;</span>, <span class="st">&quot;smoker&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb158-9"><a href="visualizations.html#cb158-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> gene.id, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb158-10"><a href="visualizations.html#cb158-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb158-11"><a href="visualizations.html#cb158-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Maternal tobacco use in pregnancy&quot;</span>, <span class="at">y =</span> <span class="st">&quot;miRNA expression&quot;</span>) <span class="sc">+</span></span>
+<span id="cb158-12"><a href="visualizations.html#cb158-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-2.png" width="672" /></p>
+</div>
+<div id="scatter-plots" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Scatter plots</h2>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="visualizations.html#cb159-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb159-2"><a href="visualizations.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">22</span><span class="sc">:</span><span class="dv">25</span>),</span>
+<span id="cb159-3"><a href="visualizations.html#cb159-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;gene.id&quot;</span>,</span>
+<span id="cb159-4"><a href="visualizations.html#cb159-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;expression&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb159-5"><a href="visualizations.html#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> maternal.cigarettes, <span class="at">y =</span> expression, <span class="at">color =</span> location, <span class="at">shape =</span> low.birthweight)) <span class="sc">+</span></span>
+<span id="cb159-6"><a href="visualizations.html#cb159-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb159-7"><a href="visualizations.html#cb159-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> locations.palette) <span class="sc">+</span></span>
+<span id="cb159-8"><a href="visualizations.html#cb159-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;&lt; 2.72 kg&quot;</span>, <span class="st">&quot;&gt;= 2.72 kg&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb159-9"><a href="visualizations.html#cb159-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> gene.id, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb159-10"><a href="visualizations.html#cb159-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Maternal cigarettes / day&quot;</span>, <span class="at">y =</span> <span class="st">&quot;miRNA expression&quot;</span>) <span class="sc">+</span></span>
+<span id="cb159-11"><a href="visualizations.html#cb159-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb159-12"><a href="visualizations.html#cb159-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="visualizations.html#cb160-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb160-2"><a href="visualizations.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(weeks.gestation <span class="sc">&gt;=</span> <span class="dv">38</span>, weeks.gestation <span class="sc">&lt;=</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb160-3"><a href="visualizations.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">22</span><span class="sc">:</span><span class="dv">25</span>),</span>
+<span id="cb160-4"><a href="visualizations.html#cb160-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;gene.id&quot;</span>,</span>
+<span id="cb160-5"><a href="visualizations.html#cb160-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;expression&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb160-6"><a href="visualizations.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> maternal.cigarettes, <span class="at">y =</span> expression, <span class="at">color =</span> gene.id, <span class="at">shape =</span> low.birthweight)) <span class="sc">+</span></span>
+<span id="cb160-7"><a href="visualizations.html#cb160-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb160-8"><a href="visualizations.html#cb160-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> genes.palette) <span class="sc">+</span></span>
+<span id="cb160-9"><a href="visualizations.html#cb160-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;&lt; 2.72 kg&quot;</span>, <span class="st">&quot;&gt;= 2.72 kg&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb160-10"><a href="visualizations.html#cb160-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> weeks.gestation, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb160-11"><a href="visualizations.html#cb160-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Maternal cigarettes / day&quot;</span>, <span class="at">y =</span> <span class="st">&quot;miRNA expression&quot;</span>) <span class="sc">+</span></span>
+<span id="cb160-12"><a href="visualizations.html#cb160-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb160-13"><a href="visualizations.html#cb160-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-2.png" width="672" /></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="visualizations.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(experiment, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weeks.gestation, <span class="at">y =</span> birthweight, <span class="at">color =</span> smoker)) <span class="sc">+</span></span>
+<span id="cb161-2"><a href="visualizations.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span></span>
+<span id="cb161-3"><a href="visualizations.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> smoking.palette, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;non-smoking&quot;</span>, <span class="st">&quot;smoking&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb161-4"><a href="visualizations.html#cb161-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Gestational age at birth (weeks)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birth weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb161-5"><a href="visualizations.html#cb161-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb161-6"><a href="visualizations.html#cb161-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-3.png" width="672" /></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="visualizations.html#cb162-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb162-2"><a href="visualizations.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(smoker <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb162-3"><a href="visualizations.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> maternal.cigarettes,</span>
+<span id="cb162-4"><a href="visualizations.html#cb162-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> weeks.gestation,</span>
+<span id="cb162-5"><a href="visualizations.html#cb162-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> birthweight)) <span class="sc">+</span></span>
+<span id="cb162-6"><a href="visualizations.html#cb162-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span></span>
+<span id="cb162-7"><a href="visualizations.html#cb162-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Maternal cigarettes / day&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Gestational age at birth (weeks)&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Birth weight (kg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb162-8"><a href="visualizations.html#cb162-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>, <span class="at">begin =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb162-9"><a href="visualizations.html#cb162-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-4.png" width="672" /></p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="visualizations.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(experiment, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weeks.gestation,</span>
+<span id="cb163-2"><a href="visualizations.html#cb163-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">y =</span> birthweight,</span>
+<span id="cb163-3"><a href="visualizations.html#cb163-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">color =</span> smoker)) <span class="sc">+</span></span>
+<span id="cb163-4"><a href="visualizations.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb163-5"><a href="visualizations.html#cb163-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb163-6"><a href="visualizations.html#cb163-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Gestational age at birth (weeks)&quot;</span>,</span>
+<span id="cb163-7"><a href="visualizations.html#cb163-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Birth weight (kg)&quot;</span>,</span>
+<span id="cb163-8"><a href="visualizations.html#cb163-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Maternal tobacco use&quot;</span>,</span>
+<span id="cb163-9"><a href="visualizations.html#cb163-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Birthweight increases with gestational age for infants born to both</span><span class="sc">\n</span><span class="st">smokers and non-smokers.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb163-10"><a href="visualizations.html#cb163-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> smoking.palette) <span class="sc">+</span></span>
+<span id="cb163-11"><a href="visualizations.html#cb163-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb163-12"><a href="visualizations.html#cb163-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+</div>
+<div id="heat-maps" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Heat maps</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-the-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="troubleshooting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

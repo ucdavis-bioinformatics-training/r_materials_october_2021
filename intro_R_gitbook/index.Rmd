@@ -1,0 +1,45 @@
+--- 
+title: "Introduction to R for Bioinformatics"
+author: "UC Davis Bioinformatics Core"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+---
+
+# Introduction {-}
+
+Get off to a good start in bioinformatics with this three-part online workshop in R. This workshop lays the foundation or successful bioinformatics experiments, including RNA-Seq, single cell RNA-Seq, epigenetics, and more.
+
+The three three-hour sessions combine lecture and exercises in a survey of the basics of R for bioinformatics. Completion of this material will allow participants to get the most out of our other experiment-centric workshops. We recommend this course of all beginners.
+
+## About this course {-}
+This course will focus primarily on the *practical* use of R, rather than it's theoretical foundations. However, the fundamentals of programming are critical to any deeper understanding of R. As we come to each new concept, we will pause to explore and discuss.
+
+## R {-}
+
+[R](https://www.r-project.org/) is a language and environment for statistical computing and graphics developed in the early 1990s. It provides a wide variety of statistical and graphical techniques, including linear and nonlinear modeling, statistical tests, time series analysis, classification, and clustering, among many others.
+
+R:
+
+-   Is free!
+-   Is open source and highly extensible, meaning that the user community can (and does) write new R tools
+-   Makes publication quality figures, including mathematical symbols and formulae
+-   Compiles and runs on Windows, MacOS, and a wide variety of UNIX and Linux systems
+-   Has a large and active user community
+
+There are many ways to use R: from the command line, from a script, or in a graphical interface, like RStudio.
+
+## RStudio {-}
+
+RStudio is an integrated development environment (IDE), which offers:
+
+-   Syntax highlighting
+-   Code completion
+-   Smart indentation
+-   Workspace browser
+-   Data viewer
+-   Embedded plots
+-   Notebooks that generate PDF or HTML results
+-   Package management
+
+The team behind RStudio are also the authors of a suite of R packages for data science and visualization collectively known as the "tidyverse." We will be using their extremely popular plotting package, ggplot2, as well as a few other packages from the tidyverse suite later in this course.

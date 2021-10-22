@@ -1,0 +1,25 @@
+---
+title: "Importing and exporting data"
+author: "UC Davis Bioinformatics Core"
+date: "10/21/2021"
+output: html_document
+---
+
+# Importing and exporting data
+
+Manual data entry is time-consuming and leads to errors. R has a number of functions for reading data in a variety of formats. Let's use the `read.csv()` function to read in a spreadsheet containing data from an experiment.
+
+```{r}
+birthweight <- read.csv("datasets/birthweight.csv")
+```
+
+CSV stands for "comma separated value," and the CSV file is simply a text file where each row in the file represents a row in the data table, and the columns are separated by commas. The contents of the CSV file are now stored in the variable "birthweight."
+
+If we wanted to write the contents of the birthweight object to a new CSV, we can use the `write.csv()` function instead.
+
+```{r}
+write.csv(birthweight, file = "datasets/new_birthweight.csv")
+```
+
+The similar `read.delim()` and `write.delim()` can be used to read and write tab-delimited files, where columns are separated by tab characters rather than commas.
+

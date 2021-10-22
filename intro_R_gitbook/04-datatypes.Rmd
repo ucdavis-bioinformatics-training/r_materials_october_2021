@@ -1,0 +1,99 @@
+---
+title: "Basic data types"
+author: "UC Davis Bioinformatics Core"
+date: "10/21/2021"
+output: html_document
+---
+
+# Basic data types
+
+We have already said that logical values can be used to subset a data frame, and all the values in a given column of a data frame must be of the same type But what does this mean?
+
+## Understanding class
+
+When R prints the birthweight data frame, you can see a line with three letter codes like `<int>` and `<chr>` just underneath the column headers. These describe the *class*, or type, of data found in the column. R has the following basic data classes:
+
+-   numeric (includes integer and double)
+-   character
+-   logical
+-   complex
+-   raw
+
+Generally, in bioinformatics, values belong to one of the first three classes. Read more about the complex and raw data types [here](https://r-coder.com/data-types-r/).
+
+```{r}
+class(birthweight$birthweight)
+class(birthweight$smoker)
+class(birthweight$geriatric.pregnancy)
+```
+
+The integer and numeric categories are fairly self-explanatory. What are character and logical?
+
+Character values are exactly what they sound like: stored characters (letters and / or numbers). In the birthweight table, the "birth.date" and "location" columns contain character values.
+
+```{r}
+head(birthweight$location)
+```
+
+Logical values are TRUE, FALSE, or NA (missing). Logical values are the result of comparing one item to another with *relational operators*.
+
+```{r}
+birthweight[birthweight$head.circumference > 35, c("length", "weeks.gestation", "maternal.height", "paternal.height")]
+birthweight[birthweight$maternal.age <= 20, c("location", "maternal.age", "paternal.age")]
+birthweight[birthweight$paternal.education == 10, c(1,13:16)]
+birthweight[birthweight$weeks.gestation != 40, "weeks.gestation"]
+birthweight[birthweight$location == "General",]
+```
+
+Many of R's functions also return logical values.
+
+```{r}
+is.numeric(birthweight$ID)
+is.numeric(birthweight$smoker)
+```
+
+## Coercion: converting between classes
+
+The birthweight data frame has three columns that should probably be logical values: "smoker", "low.birthweight", and "geriatric.pregnancy". All of these are questions that can be answered with TRUE/FALSE. However, only "geriatric.pregnancy" is stored as a logical value. Storing "smoker" and "low.birthweight" as logical values would be more useful, since it allows us to subset the data frame more easily.
+
+Changing the class of data is known as *coercion*.
+
+```{r}
+as.logical(birthweight$low.birthweight)
+as.logical(birthweight$smoker)
+```
+
+The `as.logical()` function converted "low.birthweight" to a logical vector, but could not convert "smoker," and returned a vector of missing data denoted by NA. Why is this?
+
+The coercion rule in R is as follows:
+
+logical -\> integer -\> numeric -\> complex -\> character
+
+R can convert logical values to integers, store integers as the more general numeric type, or represent numeric data as a character, but these coercion operations cannot always be reversed without losing information.
+
+```{r}
+as.numeric(birthweight$geriatric.pregnancy)
+```
+
+The `as.logical()` function only operates on "low.birthweight" the way we want because the data was encoded as 0s and 1s. If *any other numbers* were used, the results might be unexpected.
+
+```{r}
+as.logical(birthweight$maternal.age)
+```
+
+Let's convert the "low.birthweight" column to logical.
+
+```{r}
+birthweight$low.birthweight <- as.logical(birthweight$low.birthweight)
+birthweight
+```
+
+Simple coercion is not going to convert the "smoker" column from character to logical. However, because the result of a relational operation is a vector of logical values, the "yes" and "no" values are easily converted to logical valuess.
+
+```{r}
+birthweight$smoker == "yes"
+birthweight$smoker <- (birthweight$smoker == "yes")
+birthweight
+```
+
+Converting the dates (currently stored as characters) to a more useable format is not as simple, and will require another function.

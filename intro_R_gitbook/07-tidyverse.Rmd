@@ -1,0 +1,100 @@
+---
+title: "Introduction to the tidyverse"
+author: "UC Davis Bioinformatics Core"
+date: "10/21/2021"
+output: html_document
+---
+
+# Introduction to the tidyverse
+
+All of the functions used up to this point were part of base R. They are built into the R language itself. Base R is extremely powerful, but R is also *extensible*.
+
+The [tidyverse](https://www.tidyverse.org/) is a collection of packages by the creators of RStudio that share an approach to data science.
+
+The authors model data science like this:
+
+[Data science life cycle](https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png)
+
+The tidyverse packages replace some of the base R functions with alternatives that are intended to be more user friendly for data scientists who are following this life cycle.
+
+We will only be covering a few of the packages from the tidyverse.
+
+```{r}
+library(tidyr)
+library(dplyr)
+library(magrittr)
+```
+
+## Defining tidy data
+
+In "tidy" data, every column is a variable, every row is an observation, and every cell contains a single observation. Is the birthweight data frame tidy? Why or why not?
+
+```{r}
+birthweight
+```
+
+## Pipes: combining tidyverse functions
+
+The tidyverse employs piping to send the output of one function to another function, rather than the nesting used in base r. The "pipe" is written with a greater than symbol sandwiched between two percent signs, like this: `%>%`.
+
+```{r}
+experiment %>%
+  filter(low.birthweight == TRUE) %>%
+  select(birth.date, length, birthweight, smoker)
+# equivalent to:
+experiment[experiment$low.birthweight == TRUE, c("birth.date", "length", "birthweight", "smoker")]
+```
+
+The `separate()` function makes the conversion of the "birth.date" column into "month," "day," and "year" trivial.
+
+```{r}
+experiment %>%
+  filter(low.birthweight == TRUE) %>%
+  select(birth.date, length, birthweight, smoker) %>%
+  separate(col = birth.date, sep = "[/]", into = c("month", "day", "year"))
+```
+
+## Transforming data
+
+The `mutate()` function adds a new column based on data contained in the existing columns.
+
+```{r}
+experiment %>%
+  filter(low.birthweight == TRUE) %>%
+  select(birth.date, length, birthweight, smoker) %>%
+  mutate(d = birthweight / length)
+```
+
+## Summarizing data
+
+The `group_by()` and `summarize()` functions apply a function to a group defined by one or more categorical variables.
+
+```{r}
+experiment %>%
+  group_by(smoker) %>%
+  summarize(mean.birthweight = mean(birthweight))
+experiment %>%
+  group_by(smoker, low.birthweight) %>%
+  summarize(mean.birthweight = mean(birthweight))
+```
+
+To change the order of rows, use `arrange()`. To return one or more specified rows, use `slice()`.
+
+```{r}
+experiment %>%
+  group_by(smoker) %>%
+  select(birthweight, length, head.circumference, weeks.gestation) %>%
+  slice_max(order_by = birthweight, n = 5)
+```
+
+The utility of the `pivot_longer()` function will become more evident during visualization.
+
+```{r}
+experiment %>%
+  filter(low.birthweight == TRUE) %>%
+  select(smoker, `miR-16`, `miR-21`, `miR-146a`, `miR-182`) %>%
+  pivot_longer(cols = c(`miR-16`, `miR-21`, `miR-146a`, `miR-182`),
+               names_to = "gene",
+               values_to = "expression") 
+```
+
