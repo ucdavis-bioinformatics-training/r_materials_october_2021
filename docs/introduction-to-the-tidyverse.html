@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb122-3"><a href="introduction-to-the-tidyverse.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(birth.date, length, birthweight, smoker)</span></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-138">Table 7.1: </span>Tidyverse filter and select.
+<span id="tab:unnamed-chunk-80">Table 7.1: </span>Tidyverse filter and select.
 </caption>
 <thead>
 <tr>
@@ -364,7 +364,7 @@ TRUE
 <span id="cb123-2"><a href="introduction-to-the-tidyverse.html#cb123-2" aria-hidden="true" tabindex="-1"></a>experiment[experiment<span class="sc">$</span>low.birthweight <span class="sc">==</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="st">&quot;birth.date&quot;</span>, <span class="st">&quot;length&quot;</span>, <span class="st">&quot;birthweight&quot;</span>, <span class="st">&quot;smoker&quot;</span>)]</span></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-140">Table 7.2: </span>Base R subsetting.
+<span id="tab:unnamed-chunk-82">Table 7.2: </span>Base R subsetting.
 </caption>
 <thead>
 <tr>
@@ -499,7 +499,7 @@ TRUE
 <span id="cb124-4"><a href="introduction-to-the-tidyverse.html#cb124-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> birth.date, <span class="at">sep =</span> <span class="st">&quot;[/]&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>, <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-142">Table 7.3: </span>Tidyverse separate.
+<span id="tab:unnamed-chunk-84">Table 7.3: </span>Tidyverse separate.
 </caption>
 <thead>
 <tr>
@@ -653,7 +653,7 @@ TRUE
 <span id="cb125-4"><a href="introduction-to-the-tidyverse.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d =</span> birthweight <span class="sc">/</span> length)</span></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-144">Table 7.4: </span>Tidyverse mutate.
+<span id="tab:unnamed-chunk-86">Table 7.4: </span>Tidyverse mutate.
 </caption>
 <thead>
 <tr>
@@ -788,7 +788,7 @@ TRUE
 <span id="cb126-3"><a href="introduction-to-the-tidyverse.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.birthweight =</span> <span class="fu">mean</span>(birthweight))</span></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-146">Table 7.5: </span>Tidyverse summarize grouped by smoker.
+<span id="tab:unnamed-chunk-88">Table 7.5: </span>Tidyverse summarize grouped by smoker.
 </caption>
 <thead>
 <tr>
@@ -825,7 +825,7 @@ TRUE
 <pre><code>## `summarise()` has grouped output by &#39;smoker&#39;. You can override using the `.groups` argument.</code></pre>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-148">Table 7.6: </span>Tidyverse summarize grouped by smoker and birthweight.
+<span id="tab:unnamed-chunk-90">Table 7.6: </span>Tidyverse summarize grouped by smoker and birthweight.
 </caption>
 <thead>
 <tr>
@@ -894,7 +894,7 @@ TRUE
 <span id="cb129-4"><a href="introduction-to-the-tidyverse.html#cb129-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> birthweight, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-150">Table 7.7: </span>Tidyverse slice, ordered on birthweight.
+<span id="tab:unnamed-chunk-92">Table 7.7: </span>Tidyverse slice, ordered on birthweight.
 </caption>
 <thead>
 <tr>
@@ -1098,7 +1098,7 @@ TRUE
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
 <table>
 <caption>
-<span id="tab:unnamed-chunk-152">Table 7.8: </span>Tidyverse pivot_longer.
+<span id="tab:unnamed-chunk-94">Table 7.8: </span>Tidyverse pivot_longer.
 </caption>
 <thead>
 <tr>
