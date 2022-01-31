@@ -1,17 +1,10 @@
----
-title: "Basic data types"
-author: "UC Davis Bioinformatics Core"
-date: "10/21/2021"
-output: html_document
----
-
 # Basic data types
 
-We have already said that logical values can be used to subset a data frame, and all the values in a given column of a data frame must be of the same type But what does this mean?
+We have already said that logical values can be used to subset a data frame, and all the values in a given column of a data frame must be of the same type or *class*. But what does this mean?
 
 ## Understanding class
 
-When R prints the birthweight data frame, you can see a line with three letter codes like `<int>` and `<chr>` just underneath the column headers. These describe the *class*, or type, of data found in the column. R has the following basic data classes:
+R has the following basic data classes:
 
 -   numeric (includes integer and double)
 -   character
@@ -27,7 +20,7 @@ class(birthweight$smoker)
 class(birthweight$geriatric.pregnancy)
 ```
 
-The integer and numeric categories are fairly self-explanatory. What are character and logical?
+The numeric category is fairly self-explanatory. What are character and logical?
 
 Character values are exactly what they sound like: stored characters (letters and / or numbers). In the birthweight table, the "birth.date" and "location" columns contain character values.
 
@@ -35,14 +28,72 @@ Character values are exactly what they sound like: stored characters (letters an
 head(birthweight$location)
 ```
 
+Characters are recognizable by the quotation marks that appear around them in the output. R cannot perform mathematical operations on numbers stored as characters. 
+
+```{r, eval=FALSE}
+1 + "1"
+```
+
 Logical values are TRUE, FALSE, or NA (missing). Logical values are the result of comparing one item to another with *relational operators*.
 
-```{r}
+The relational operators in R are:
+
+- `>` greater than
+- `>=` greater than or equal to
+- `<` less than
+- `<=` less than or equal to
+- `==` equal to
+- `!=` not equal to
+
+```{r, eval=FALSE}
 birthweight[birthweight$head.circumference > 35, c("length", "weeks.gestation", "maternal.height", "paternal.height")]
+```
+```{r, echo=FALSE}
+knitr::kable(
+  birthweight[birthweight$head.circumference > 35, c("length", "weeks.gestation", "maternal.height", "paternal.height")],
+  booktabs = TRUE,
+  caption = 'Results of birthweight[birthweight$head.circumference > 35, c("length", "weeks.gestation", "maternal.height", "paternal.height")], c(1,4:12,17,18)].'
+) %>%
+  scroll_box(height = "500px")
+```
+
+```{r, eval=FALSE}
 birthweight[birthweight$maternal.age <= 20, c("location", "maternal.age", "paternal.age")]
+```
+```{r, echo=FALSE}
+knitr::kable(
+  birthweight[birthweight$maternal.age <= 20, c("location", "maternal.age", "paternal.age")],
+  booktabs = TRUE,
+  caption = 'Results of birthweight[birthweight$maternal.age <= 20, c("location", "maternal.age", "paternal.age")].'
+)
+```
+
+Notice that when R is asked to perform a comparison between a number and a missing value, the result is a missing value.
+
+```{r, eval=FALSE}
 birthweight[birthweight$paternal.education == 10, c(1,13:16)]
+```
+```{r, echo=FALSE}
+knitr::kable(
+  birthweight[birthweight$paternal.education == 10, c(1,13:16)],
+  booktabs = TRUE,
+  caption = 'Results of birthweight[birthweight$paternal.education == 10, c(1,13:16)].'
+)
+```
+
+```{r}
 birthweight[birthweight$weeks.gestation != 40, "weeks.gestation"]
+```
+```{r, eval=FALSE}
 birthweight[birthweight$location == "General",]
+```
+```{r, echo=FALSE}
+knitr::kable(
+  birthweight[birthweight$location == "General",],
+  booktabs = TRUE,
+  caption = 'Results of birthweight[birthweight$location == "General",].'
+) %>%
+  scroll_box(width = "100%")
 ```
 
 Many of R's functions also return logical values.
@@ -67,7 +118,7 @@ The `as.logical()` function converted "low.birthweight" to a logical vector, but
 
 The coercion rule in R is as follows:
 
-logical -\> integer -\> numeric -\> complex -\> character
+logical \> integer \> numeric \> complex \> character
 
 R can convert logical values to integers, store integers as the more general numeric type, or represent numeric data as a character, but these coercion operations cannot always be reversed without losing information.
 
@@ -83,17 +134,24 @@ as.logical(birthweight$maternal.age)
 
 Let's convert the "low.birthweight" column to logical.
 
-```{r}
+```{r, eval=FALSE}
 birthweight$low.birthweight <- as.logical(birthweight$low.birthweight)
 birthweight
 ```
-
-Simple coercion is not going to convert the "smoker" column from character to logical. However, because the result of a relational operation is a vector of logical values, the "yes" and "no" values are easily converted to logical valuess.
-
-```{r}
-birthweight$smoker == "yes"
-birthweight$smoker <- (birthweight$smoker == "yes")
-birthweight
+```{r, echo=FALSE}
+birthweight$low.birthweight <- as.logical(birthweight$low.birthweight)
+knitr::kable(
+  birthweight,
+  booktabs = TRUE,
+  caption = 'The birthweight data frame.'
+) %>%
+  scroll_box(width = "100%", height = "500px")
 ```
 
-Converting the dates (currently stored as characters) to a more useable format is not as simple, and will require another function.
+Note that the output of `as.logical(birthweight$low.birthweight)` must be assigned to the "low.birthweight" column in order for the values in the column to change.
+
+## Exercise 2: converting "smoker" from character to logical
+
+Simple coercion is not going to convert the "smoker" column from character to logical.
+
+**How can you solve this problem?**

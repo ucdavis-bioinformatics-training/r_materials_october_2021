@@ -1,23 +1,34 @@
----
-title: "Visualizations"
-author: "UC Davis Bioinformatics Core"
-date: "10/21/2021"
-output: html_document
----
-
 # Visualizations
 
 The ggplot2 library is an extremely popular visualization package that provides an interface for extremely fine control over graphics for plotting. It is used by a number of of other popular packages in their built-in plotting functions. It provides a "grammar of graphics" that is quite useful to know.
 
+```{r}
+experiment %>%
+  filter(weeks.gestation >= 38, weeks.gestation <= 40) %>%
+  pivot_longer(cols = c(22:25),
+               names_to = "gene.id",
+               values_to = "expression") %>%
+  ggplot(mapping = aes(x = maternal.cigarettes, y = expression, color = gene.id, shape = low.birthweight)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = genes.palette) +
+  scale_shape_manual(values = c(16, 17), labels = c("< 2.72 kg", ">= 2.72 kg")) +
+  facet_wrap(~ weeks.gestation, nrow = 1) +
+  labs(x = "Maternal cigarettes / day", y = "miRNA expression") +
+  theme_bw() +
+  theme(legend.title = element_blank())
+```
+
 **A note about accessibility:**
 
-The default colors automatically selected by ggplot2 are not very user-friendly. Colors are chosen by sampling evenly hues on the color wheel. Because of this behavior, all of the colors have similar intensity, which means that they do not work in a gray-scale printing, and may be difficult to distinguish for users with atypical color vision. There are many resources for selecting color palettes online. Here are just a few:
+The default colors automatically selected by ggplot2 are not very user-friendly. Colors are chosen by sampling evenly spaced hues on the color wheel. Because of this behavior, all of the colors have similar intensity, which means that they do not work well when printed in gray-scale, and may be difficult to distinguish for users with atypical color vision. There are many resources for selecting color palettes online. Here are just a few:
 
 - [Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
 - [ColorBrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
 - [colorBlindness Guide](https://cran.r-project.org/web/packages/colorBlindness/vignettes/colorBlindness.html#Collection_of_safe_colors)
 - [Digital Accessibility](https://accessibility.digital.gov/visual-design/color-and-contrast/)
 - [Blog entry](https://personal.sron.nl/~pault/)
+
+In this documentation we will be using four palettes generated using the viridis library.
 
 ```{r}
 library(ggplot2)
@@ -30,73 +41,195 @@ years.palette <- mako(2, begin = 0.4, end = 0.9, direction = -1)
 genes.palette <- plasma(4)
 ```
 
-## Histograms and density plots
+As we go through this plotting section, we will pause several times to allow you to explore. Don't limit yourself to the visualizations included! Experiment with manipulating each of the elements of the plots to accheive interesting and informative graphics.
+
+## The ggplot() function
+
+The basic function of the ggplot2 library is `ggplot()`.
+
+```{r}
+?ggplot
+```
+
+It is capable of taking a lot of arguments and options, but requires only two: an object (typically a data frame) containing the data, and a list of "aesthetic mappings" that tell R which values to use for the axes, colors, and other graphical elements of the plot.
+
+```{r}
+ggplot(data = experiment, mapping = aes(x = birthweight))
+```
+
+Alone, this produces an empty plot. The `ggplot()` function by itself creates the blank canvas upon which the plot will be drawn. The plot elements are added to this canvas in layers called "geoms."
+
+## The geom
+
+There are over 30 geoms in the ggplot2 library, each of which accepts a particular set of aesthetic mappings. The geoms inherit the mapping specified in the original `ggplot()` function call, and additional layer-specific aesthetics may be specified within the geom. Let's start with one of the simplest geoms, the histogram.
+
+The `geom_histogram()` function requires, at a minimum, that a value be provided for x.
 
 ```{r}
 ggplot(data = experiment, mapping = aes(x = birthweight)) +
+  geom_histogram()
+```
+
+Setting the "binwidth" parameter within the `geom_histogram()` call changes the appearance of the plot and eliminates the message.
+
+```{r}
+ggplot(data = experiment, mapping = aes(x = birthweight)) +
+  geom_histogram(binwidth = 1)
+ggplot(data = experiment, mapping = aes(x = birthweight)) +
+  geom_histogram(binwidth = 0.25)
+```
+
+## Adding color (and fill) to geoms
+
+The color (for lines and points) and fill (for areas, like bars) of a geom can add another layer of information to the plot.
+
+```{r}
+ggplot(data = experiment, mapping = aes(x = birthweight, fill = location)) +
   geom_histogram(binwidth = 0.25) +
-  facet_wrap(~location, nrow = 3) +
-  labs(x = "weight (kg)", y = "births") +
-  theme_bw()
-ggplot(data = experiment, mapping = aes(x = birthweight)) +
-  geom_density() +
-  theme_bw()
-ggplot(data = experiment, mapping = aes(x = birthweight)) +
-  geom_density() +
-  facet_wrap(~location, nrow = 3) +
-  theme_bw()
-ggplot(data = experiment,
-       mapping = aes(x = birthweight,
-                     color = location)) +
-  geom_density() +
-  scale_color_manual(values = locations.palette) +
-  theme_bw()
-ggplot(data = experiment,
-       mapping = aes(x = birthweight,
-                     color = as.factor(year))) +
-  geom_density() +
-  facet_wrap(~as.factor(year), nrow = 1) +
-  scale_color_manual(values = years.palette) +
-  theme_bw()
+  scale_fill_manual(values = locations.palette) 
 ```
 
-## Bar charts
+Here the total height of the bar is equal to the number of births at each weight, and the fill denotes the hospital at which the birth occured.
+
+## Creating faceted plots
+
+Sometimes, it may be more clear graphically to create multiple sub-plots or "facets" based on categorical values in the data. The `facet_wrap()` and `facet_grid()` functions allow the user to break the data down into multiple plots by one or two categorical variables, respectively.
 
 ```{r}
-ggplot(data = experiment,
-       mapping = aes(x = as.factor(month), fill = as.factor(year))) +
-  geom_bar(position = position_dodge2(preserve = "single")) +
-  labs(x = "Birth month", y = "Samples", fill = "Year",
-       caption = "Colors: https://personal.sron.nl/~pault/") +
-  scale_fill_manual(values = years.palette) +
-  theme_bw()
-
-ggplot(data = experiment,
-       mapping = aes(x = maternal.cigarettes, fill = location)) +
-  geom_bar(position = position_dodge2(preserve = "single")) +
-  labs(x = "Maternal Smoking (cigarettes / day)", y = "Samples", fill = "Collection Site") +
+ggplot(data = experiment, mapping = aes(x = birthweight, fill = location)) +
+  geom_histogram(binwidth = 0.25) +
   scale_fill_manual(values = locations.palette) +
-  facet_wrap(~year) +
+  facet_wrap(~year, nrow = 2)
+```
+
+## Add and modify labels
+
+Often, the aesthetic names (column names) are uninformative, or unattractive. This may not make much difference when making exploratory figures, but in a report or publication, it is important to have a greater degree of control over the plot title, axis labels, and so on. The `labs()` function offers the option to set the following labels:
+
+- **any aesthetic that has been set**: in this case, x and fill 
+- **title**: main title of the plot
+- **subtitle**: displayed below the title
+- **caption**: displayed at the bottom right of the plot by default
+- **tag**: label that appears at the top left of the plot by default (e.g. 1A)
+- **alt**, **alt_insight**: alt text for the plot (used by screen readers)
+
+```{r}
+ggplot(data = experiment, mapping = aes(x = birthweight, fill = location)) +
+  geom_histogram(binwidth = 0.25) +
+  scale_fill_manual(values = locations.palette) +
+  facet_wrap(~year, nrow = 2) +
+  labs(x = "birth weight (kg)",
+       fill = "Hospital",
+       tag = "fig. 1",
+       caption = "Birth weights by year, color-coded by delivery location.",
+       alt = "Pair of histograms displaying the distribution of birth weights of infants born at General Hospital, Memorial Hospital, and Silver Hill Medical Center in 1967 and 1968.")
+```
+
+## Making global changes to the plot's appearance using themes
+
+The "theme" of a ggplot object controls the graphical elements that are not mapped onto the data. This includes things like the font size and alignment of axis labels and the color of the plot background. There are a number of pre-set themes offering a range of plot styles.
+
+In addition, the `theme()` function offers access to these graphical elements independently. Using it, you can change the angle of the text on the x axis, the placement of the legend, and many other things. Here, we will use it to remove the legend title.
+
+```{r}
+ggplot(data = experiment, mapping = aes(x = birthweight, fill = location)) +
+  geom_histogram(binwidth = 0.25) +
+  scale_fill_manual(values = locations.palette) +
+  facet_grid(location~year) +
+  labs(x = "weight (kg)", y = "births") +
+  theme_bw() +
+  theme(legend.title = element_blank())
+```
+
+An interesting alternative to `geom_histogram()` is `geom_density()`.
+```{r}
+ggplot(data = experiment, mapping = aes(x = birthweight, fill = smoker)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = smoking.palette) +
+  labs(x = "birth weight (kg)", fill = "Maternal smoking in pregnancy") +
   theme_bw()
 ```
 
-## Box and violin plots
+The alpha channel of a color determines its opacity. In this case, we have placed `alpha = 0.5` outside of the `aes()` function call, because the opacity is not being mapped to any characteristic of the data.
+
+The examples above use color in a discrete fashion. In the scatter plot below, the color of each point represents a birth weight (continuous variable).
 
 ```{r}
 experiment %>%
-  pivot_longer(cols = c(22:25),
-               names_to = "gene.id",
-               values_to = "expression") %>%
-  ggplot(mapping = aes(x = smoker, y = expression, fill = smoker)) +
+  filter(smoker == TRUE) %>%
+  ggplot(mapping = aes(x = maternal.cigarettes,
+                       y = weeks.gestation,
+                       color = birthweight)) +
+  geom_point()  +
+  labs(x = "Maternal cigarettes / day", y = "Gestational age at birth (weeks)", color = "Birth weight (kg)") +
+  scale_color_viridis(option = "inferno", begin = 0.4) +
+  theme_bw()
+```
+
+Notice that it is not necessary to specify a color palette; viridis has a built-in function for interacting with ggplot objects.
+
+## Change the labels for categorical values
+
+All of the elements of the plot, not just the height of bars and position of points, convey information. The labels on a categorical axis should be meaningful.
+
+```{r}
+experiment %>%
+  ggplot(mapping = aes(x = smoker, y = birthweight, fill = smoker)) +
   geom_boxplot() +
-  facet_wrap(~ gene.id, nrow = 2) +
+  scale_fill_manual(values = smoking.palette) +
+  theme_bw()
+```
+
+The bar chart above displays the values "TRUE" and "FALSE" on the x-axis. This is fine for an exploratory plot, but in a report or publication, it might be more informative to replace them with "smoker" and "non-smoker." The `scale_x_discrete()` function allows us to do just that.
+
+```{r}
+experiment %>%
+  ggplot(mapping = aes(x = smoker, y = birthweight, fill = smoker)) +
+  geom_boxplot() +
   scale_fill_manual(values = smoking.palette) +
   scale_x_discrete(labels = c("non-smoker", "smoker")) +
   guides(fill = "none") +
-  labs(y = "miRNA expression") +
-  theme_bw() +
-  theme(axis.title.x = element_blank())
+  labs(y = "birth weight (kg)", x = "maternal cigarette use in pregnancy") +
+  theme_bw()
+```
 
+## Change the direction of axes to improve readability
+
+If the category names are very long, it may be necessary to change the direction of the axis labels.
+
+```{r}
+experiment %>%
+  ggplot(mapping = aes(x = smoker, y = birthweight, fill = smoker)) +
+  geom_boxplot() +
+  scale_fill_manual(values = smoking.palette) +
+  scale_x_discrete(labels = c("non-smoking in pregnancy", "cigarette smoking in pregnancy")) +
+  guides(fill = "none") +
+  labs(y = "birth weight (kg)") +
+  theme_bw() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+Or even the direction of the axes themselves.
+
+```{r}
+experiment %>%
+  ggplot(mapping = aes(x = smoker, y = birthweight, fill = smoker)) +
+  geom_boxplot() +
+  scale_fill_manual(values = smoking.palette) +
+  scale_x_discrete(labels = c("non-smoking in pregnancy", "cigarette smoking in pregnancy")) +
+  guides(fill = "none") +
+  labs(y = "birth weight (kg)") +
+  coord_flip() +
+  theme_bw() +
+  theme(axis.title.y = element_blank())
+```
+
+## The pivot_longer() function revisited
+
+In the previous section on Tidyverse, `pivot_longer()` was only briefly discussed. This is because the easiest way to explain *why* changing the shape of a data set to create fewer, longer columns is useful is to demonstrate.
+
+```{r}
 experiment %>%
   pivot_longer(cols = c(22:25),
                names_to = "gene.id",
@@ -111,7 +244,11 @@ experiment %>%
   theme_bw()
 ```
 
-## Scatter plots
+After pivoting the miRNA data into a single column called expression, that data is available for ggplot to map that onto an aesthetic property.
+
+## Use shape and line type to convey meaning
+
+Color is not the only aesthetic available for mapping to the data. Shape and line type are also good candidates for displaying categorical (or discrete) values.
 
 ```{r}
 experiment %>%
@@ -126,38 +263,34 @@ experiment %>%
   labs(x = "Maternal cigarettes / day", y = "miRNA expression") +
   theme_bw() +
   theme(legend.title = element_blank())
+```
 
+There are 25 shapes available for plotting. You can see them all [here](http://www.sthda.com/english/wiki/ggplot2-point-shapes).
+
+```{r}
 experiment %>%
-  filter(weeks.gestation >= 38, weeks.gestation <= 40) %>%
-  pivot_longer(cols = c(22:25),
-               names_to = "gene.id",
-               values_to = "expression") %>%
-  ggplot(mapping = aes(x = maternal.cigarettes, y = expression, color = gene.id, shape = low.birthweight)) +
-  geom_point() +
-  scale_color_manual(values = genes.palette) +
-  scale_shape_manual(values = c(16, 17), labels = c("< 2.72 kg", ">= 2.72 kg")) +
-  facet_wrap(~ weeks.gestation, nrow = 1) +
-  labs(x = "Maternal cigarettes / day", y = "miRNA expression") +
-  theme_bw() +
-  theme(legend.title = element_blank())
-
-ggplot(experiment, mapping = aes(x = weeks.gestation, y = birthweight, color = smoker)) +
-  geom_point()  +
-  scale_color_manual(values = smoking.palette, labels = c("non-smoking", "smoking")) +
-  labs(x = "Gestational age at birth (weeks)", y = "Birth weight") +
-  theme_bw() +
-  theme(legend.title = element_blank())
-
-experiment %>%
-  filter(smoker == TRUE) %>%
-  ggplot(mapping = aes(x = maternal.cigarettes,
-                       y = weeks.gestation,
-                       color = birthweight)) +
-  geom_point()  +
-  labs(x = "Maternal cigarettes / day", y = "Gestational age at birth (weeks)", color = "Birth weight (kg)") +
-  scale_color_viridis(option = "inferno", begin = 0.4) +
+  ggplot(mapping = aes(x = weeks.gestation, y = birthweight, linetype = smoker)) +
+  geom_quantile(quantiles = c(0.25, 0.5, 0.75), color = "black") +
+  labs(x = "gestational age at birth", y = "birth weight (kg)", linetype = "geriatric preganancy") +
   theme_bw()
 ```
+
+## Focus in on one portion of the plot
+
+We can zoom in to the the lower left hand corner of the plot using `coord_cartesian()`.
+
+```{r}
+experiment %>%
+  ggplot(mapping = aes(x = weeks.gestation, y = birthweight, linetype = smoker)) +
+  geom_quantile(quantiles = c(0.25, 0.5, 0.75), color = "black") +
+  labs(x = "gestational age at birth", y = "birth weight (kg)", linetype = "geriatric preganancy") +
+  coord_cartesian(xlim = c(33, 35), ylim = c(1.5, 3.5)) +
+  theme_bw()
+```
+
+## Layer multiple geoms
+
+It is not necessary to make a single geom convey all of the information a plot must communicate. Instead, ggplot2 offers users the ability to layer geoms together. As long as they use the same axes, geoms may share a plot.
 
 ```{r}
 ggplot(experiment, mapping = aes(x = weeks.gestation,
@@ -172,10 +305,21 @@ ggplot(experiment, mapping = aes(x = weeks.gestation,
   scale_color_manual(values = smoking.palette) +
   theme_bw() +
   theme(plot.caption = element_text(hjust = 0))
+experiment %>%
+  group_by(year, smoker) %>%
+  summarise(mean.birthweight = mean(birthweight),
+            sd.birthweight = sd(birthweight)) %>%
+  ggplot(mapping = aes(x = as.factor(year), y = mean.birthweight, fill = smoker)) +
+  geom_col(position = position_dodge2(preserve = "single")) +
+  geom_errorbar(mapping = aes(ymin = mean.birthweight - sd.birthweight,
+                              ymax = mean.birthweight + sd.birthweight),
+                position = position_dodge2(preserve = "single")) +
+  scale_fill_manual(values = smoking.palette) +
+  labs(x = "birth year", y = "birth weight (kg)", fill = "maternal smoking") +
+  theme_bw()
 ```
 
-## Heat maps
+## ggplot2 cheat sheet
 
-```{r}
+For more information on ggplot2 check out this [quick reference guide](https://www.rstudio.com/resources/cheatsheets/), and the [free online book](https://ggplot2-book.org/).
 
-```

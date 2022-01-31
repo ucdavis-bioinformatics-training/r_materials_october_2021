@@ -1,13 +1,6 @@
----
-title: "Troubleshooting"
-author: "UC Davis Bioinformatics Core"
-date: "10/21/2021"
-output: html_document
----
-
 # Troubleshooting
 
-Common errors:
+Even advanced users of R run into problems often. Here are some of the most common errors that can often be resolved quickly:
 
 - file is not in the right place, or is incorrectly named
 - improperly formatted files
@@ -15,7 +8,4 @@ Common errors:
 - spelling errors
 - incorrectly named parameters
 
-```{r}
-
-```
-
+For more complex errors, the help documentation of a function is a good place to start. Additionally, the online community of R users is extremely active and helpful. If you've got a question, it's extremely likely it's been asked and answered many times already!

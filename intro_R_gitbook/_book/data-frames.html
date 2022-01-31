@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Data frames | Troubleshooting</title>
-  <meta name="description" content="3 Data frames | Troubleshooting" />
+  <title>3 Data frames | Introduction to R for Bioinformatics</title>
+  <meta name="description" content="3 Data frames | Introduction to R for Bioinformatics" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Data frames | Troubleshooting" />
+  <meta property="og:title" content="3 Data frames | Introduction to R for Bioinformatics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Data frames | Troubleshooting" />
+  <meta name="twitter:title" content="3 Data frames | Introduction to R for Bioinformatics" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="UC Davis Bioinformatics Core" />
 
 
-<meta name="date" content="2021-10-21" />
+<meta name="date" content="2022-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,12 +53,15 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -144,10 +147,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html"><i class="fa fa-check"></i><b>1</b> RStudio and R notebooks</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#rstudio-1"><i class="fa fa-check"></i><b>1.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#rstudio-1"><i class="fa fa-check"></i><b>1.1</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#the-console"><i class="fa fa-check"></i><b>1.1.1</b> The console</a></li>
+<li class="chapter" data-level="1.1.2" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#the-workspace-browser"><i class="fa fa-check"></i><b>1.1.2</b> The workspace browser</a></li>
+<li class="chapter" data-level="1.1.3" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#help-documentation"><i class="fa fa-check"></i><b>1.1.3</b> Help documentation</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#r-notebooks"><i class="fa fa-check"></i><b>1.2</b> R notebooks</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html"><i class="fa fa-check"></i><b>2</b> Importing and exporting data</a></li>
+<li class="chapter" data-level="2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html"><i class="fa fa-check"></i><b>2</b> Importing and exporting data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html#import-data-using-read.csv"><i class="fa fa-check"></i><b>2.1</b> Import data using read.csv()</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html#export-data-using-write.csv"><i class="fa fa-check"></i><b>2.2</b> Export data using write.csv()</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>3</b> Data frames</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="data-frames.html"><a href="data-frames.html#structure-of-a-data-frame"><i class="fa fa-check"></i><b>3.1</b> Structure of a data frame</a></li>
@@ -156,11 +168,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="data-frames.html"><a href="data-frames.html#subsetting-a-vector"><i class="fa fa-check"></i><b>3.3.1</b> Subsetting a vector</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="data-frames.html"><a href="data-frames.html#exercise-1-exploring-the-data"><i class="fa fa-check"></i><b>3.4</b> Exercise 1: exploring the data</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="basic-data-types.html"><a href="basic-data-types.html"><i class="fa fa-check"></i><b>4</b> Basic data types</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="basic-data-types.html"><a href="basic-data-types.html#understanding-class"><i class="fa fa-check"></i><b>4.1</b> Understanding class</a></li>
 <li class="chapter" data-level="4.2" data-path="basic-data-types.html"><a href="basic-data-types.html#coercion-converting-between-classes"><i class="fa fa-check"></i><b>4.2</b> Coercion: converting between classes</a></li>
+<li class="chapter" data-level="4.3" data-path="basic-data-types.html"><a href="basic-data-types.html#exercise-2-converting-smoker-from-character-to-logical"><i class="fa fa-check"></i><b>4.3</b> Exercise 2: converting “smoker” from character to logical</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a>
 <ul>
@@ -168,6 +182,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#combining-functions"><i class="fa fa-check"></i><b>5.2</b> Combining functions</a></li>
 <li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#the-apply-family-of-functions"><i class="fa fa-check"></i><b>5.3</b> The apply() family of functions</a></li>
 <li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#custom-functions"><i class="fa fa-check"></i><b>5.4</b> Custom functions</a></li>
+<li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#exercise-3-summarizing-the-data"><i class="fa fa-check"></i><b>5.5</b> Exercise 3: summarizing the data</a></li>
+<li class="chapter" data-level="5.6" data-path="functions.html"><a href="functions.html#merging-data-frames"><i class="fa fa-check"></i><b>5.6</b> Merging data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="installing-packages.html"><a href="installing-packages.html"><i class="fa fa-check"></i><b>6</b> Installing packages</a></li>
 <li class="chapter" data-level="7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Introduction to the tidyverse</a>
@@ -176,14 +192,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#pipes-combining-tidyverse-functions"><i class="fa fa-check"></i><b>7.2</b> Pipes: combining tidyverse functions</a></li>
 <li class="chapter" data-level="7.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#transforming-data"><i class="fa fa-check"></i><b>7.3</b> Transforming data</a></li>
 <li class="chapter" data-level="7.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#summarizing-data"><i class="fa fa-check"></i><b>7.4</b> Summarizing data</a></li>
+<li class="chapter" data-level="7.5" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#exercise-4-converting-between-base-r-and-tidyverse"><i class="fa fa-check"></i><b>7.5</b> Exercise 4: converting between base R and Tidyverse</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>8</b> Visualizations</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="visualizations.html"><a href="visualizations.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>8.1</b> Histograms and density plots</a></li>
-<li class="chapter" data-level="8.2" data-path="visualizations.html"><a href="visualizations.html#bar-charts"><i class="fa fa-check"></i><b>8.2</b> Bar charts</a></li>
-<li class="chapter" data-level="8.3" data-path="visualizations.html"><a href="visualizations.html#box-and-violin-plots"><i class="fa fa-check"></i><b>8.3</b> Box and violin plots</a></li>
-<li class="chapter" data-level="8.4" data-path="visualizations.html"><a href="visualizations.html#scatter-plots"><i class="fa fa-check"></i><b>8.4</b> Scatter plots</a></li>
-<li class="chapter" data-level="8.5" data-path="visualizations.html"><a href="visualizations.html#heat-maps"><i class="fa fa-check"></i><b>8.5</b> Heat maps</a></li>
+<li class="chapter" data-level="8.1" data-path="visualizations.html"><a href="visualizations.html#the-ggplot-function"><i class="fa fa-check"></i><b>8.1</b> The ggplot() function</a></li>
+<li class="chapter" data-level="8.2" data-path="visualizations.html"><a href="visualizations.html#the-geom"><i class="fa fa-check"></i><b>8.2</b> The geom</a></li>
+<li class="chapter" data-level="8.3" data-path="visualizations.html"><a href="visualizations.html#adding-color-and-fill-to-geoms"><i class="fa fa-check"></i><b>8.3</b> Adding color (and fill) to geoms</a></li>
+<li class="chapter" data-level="8.4" data-path="visualizations.html"><a href="visualizations.html#creating-faceted-plots"><i class="fa fa-check"></i><b>8.4</b> Creating faceted plots</a></li>
+<li class="chapter" data-level="8.5" data-path="visualizations.html"><a href="visualizations.html#add-and-modify-labels"><i class="fa fa-check"></i><b>8.5</b> Add and modify labels</a></li>
+<li class="chapter" data-level="8.6" data-path="visualizations.html"><a href="visualizations.html#making-global-changes-to-the-plots-appearance-using-themes"><i class="fa fa-check"></i><b>8.6</b> Making global changes to the plot’s appearance using themes</a></li>
+<li class="chapter" data-level="8.7" data-path="visualizations.html"><a href="visualizations.html#change-the-labels-for-categorical-values"><i class="fa fa-check"></i><b>8.7</b> Change the labels for categorical values</a></li>
+<li class="chapter" data-level="8.8" data-path="visualizations.html"><a href="visualizations.html#change-the-direction-of-axes-to-improve-readability"><i class="fa fa-check"></i><b>8.8</b> Change the direction of axes to improve readability</a></li>
+<li class="chapter" data-level="8.9" data-path="visualizations.html"><a href="visualizations.html#the-pivot_longer-function-revisited"><i class="fa fa-check"></i><b>8.9</b> The pivot_longer() function revisited</a></li>
+<li class="chapter" data-level="8.10" data-path="visualizations.html"><a href="visualizations.html#use-shape-and-line-type-to-convey-meaning"><i class="fa fa-check"></i><b>8.10</b> Use shape and line type to convey meaning</a></li>
+<li class="chapter" data-level="8.11" data-path="visualizations.html"><a href="visualizations.html#focus-in-on-one-portion-of-the-plot"><i class="fa fa-check"></i><b>8.11</b> Focus in on one portion of the plot</a></li>
+<li class="chapter" data-level="8.12" data-path="visualizations.html"><a href="visualizations.html#layer-multiple-geoms"><i class="fa fa-check"></i><b>8.12</b> Layer multiple geoms</a></li>
+<li class="chapter" data-level="8.13" data-path="visualizations.html"><a href="visualizations.html#ggplot2-cheat-sheet"><i class="fa fa-check"></i><b>8.13</b> ggplot2 cheat sheet</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i><b>9</b> Troubleshooting</a></li>
 <li class="divider"></li>
@@ -197,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Troubleshooting</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R for Bioinformatics</a>
           </h1>
         </div>
 
@@ -210,210 +235,2460 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="structure-of-a-data-frame" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Structure of a data frame</h2>
 <p>What is the birthweight object? In the enviroment browser, you should see that it is “42 obs. of 18 variables.” It’s probably a data table with 42 rows and 18 coumns. We can verfiy this using the <code>class()</code> and <code>dim()</code> functions.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-frames.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(birthweight)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data-frames.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(birthweight)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-frames.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(birthweight)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-frames.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(birthweight)</span></code></pre></div>
 <pre><code>## [1] 42 18</code></pre>
+<p><strong>A note on formatting:</strong> In this documentation lines beginning with <code>##</code> are the output of the R code shown. Running <code>dim(birthweight)</code> asked R what the dimensions of the birthweight object are; the answer is 42 (rows) x 21 (columns). The “[1]” is not part of the output. It is an index added by R to help you keep track of the values when an operation outputs a large number of values. We will see other examples later that will hopefully make this more clear. For now, we can safely ignore that “[1]”.</p>
 <p>A data frame organizes data into rows and columns. The object must be “rectangular,” with all rows having the same number of fields, and all values in a column must be of the same type.</p>
 <p>Each column of a data frame is a <em>vector</em>. A vector is an ordered collection of values of the same type.</p>
 <p>Let’s take a look at the contents.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-frames.html#cb8-1" aria-hidden="true" tabindex="-1"></a>birthweight</span></code></pre></div>
-<pre><code>##      ID birth.date    location length birthweight head.circumference
-## 1  1107  1/25/1967     General     52        3.23                 36
-## 2   697   2/6/1967 Silver Hill     48        3.03                 35
-## 3  1683  2/14/1967 Silver Hill     53        3.35                 33
-## 4    27   3/9/1967 Silver Hill     53        3.55                 37
-## 5  1522  3/13/1967    Memorial     50        2.74                 33
-## 6   569  3/23/1967    Memorial     50        2.51                 35
-## 7   365  4/23/1967    Memorial     52        3.53                 37
-## 8   808   5/5/1967 Silver Hill     48        2.92                 33
-## 9  1369   6/4/1967 Silver Hill     49        3.18                 34
-## 10 1023   6/7/1967    Memorial     52        3.00                 35
-## 11  822  6/14/1967    Memorial     50        3.42                 35
-## 12 1272  6/20/1967    Memorial     53        2.75                 32
-## 13 1262  6/25/1967 Silver Hill     53        3.19                 34
-## 14  575  7/12/1967    Memorial     50        2.78                 30
-## 15 1016  7/13/1967 Silver Hill     53        4.32                 36
-## 16  792   9/7/1967    Memorial     53        3.64                 38
-## 17  820  10/7/1967     General     52        3.77                 34
-## 18  752 10/19/1967     General     49        3.32                 36
-## 19  619  11/1/1967    Memorial     52        3.41                 33
-## 20 1764  12/7/1967 Silver Hill     58        4.57                 39
-## 21 1081 12/14/1967 Silver Hill     54        3.63                 38
-## 22  516   1/8/1968 Silver Hill     47        2.66                 33
-## 23  272  1/10/1968    Memorial     52        3.86                 36
-## 24  321  1/21/1968 Silver Hill     48        3.11                 33
-## 25 1636   2/2/1968 Silver Hill     51        3.93                 38
-## 26 1360  2/16/1968     General     56        4.55                 34
-## 27 1388  2/22/1968    Memorial     51        3.14                 33
-## 28 1363   4/2/1968     General     48        2.37                 30
-## 29 1058  4/24/1968 Silver Hill     53        3.15                 34
-## 30  755  4/25/1968    Memorial     53        3.20                 33
-## 31  462  6/19/1968 Silver Hill     58        4.10                 39
-## 32  300  7/18/1968 Silver Hill     46        2.05                 32
-## 33 1088  7/24/1968     General     51        3.27                 36
-## 34   57  8/12/1968    Memorial     51        3.32                 38
-## 35  553  8/17/1968 Silver Hill     54        3.94                 37
-## 36 1191   9/7/1968     General     53        3.65                 33
-## 37  431  9/16/1968 Silver Hill     48        1.92                 30
-## 38 1313  9/27/1968 Silver Hill     43        2.65                 32
-## 39 1600  10/9/1968     General     53        2.90                 34
-## 40  532 10/25/1968     General     53        3.59                 34
-## 41  223 12/11/1968     General     50        3.87                 33
-## 42 1187 12/19/1968 Silver Hill     53        4.07                 38
-##    weeks.gestation smoker maternal.age maternal.cigarettes maternal.height
-## 1               38     no           31                   0             164
-## 2               39     no           27                   0             162
-## 3               41     no           27                   0             164
-## 4               41    yes           37                  25             161
-## 5               39    yes           21                  17             156
-## 6               39    yes           22                   7             159
-## 7               40    yes           26                  25             170
-## 8               34     no           26                   0             167
-## 9               38    yes           31                  25             162
-## 10              38    yes           30                  12             165
-## 11              38     no           20                   0             157
-## 12              40    yes           37                  50             168
-## 13              41    yes           27                  35             163
-## 14              37    yes           19                   7             165
-## 15              40     no           19                   0             171
-## 16              40    yes           20                   2             170
-## 17              40     no           24                   0             157
-## 18              40    yes           27                  12             152
-## 19              39    yes           23                  25             181
-## 20              41    yes           32                  12             173
-## 21              38     no           18                   0             172
-## 22              35    yes           20                  35             170
-## 23              39    yes           30                  25             170
-## 24              37     no           28                   0             158
-## 25              38     no           29                   0             165
-## 26              44     no           20                   0             162
-## 27              41    yes           22                   7             160
-## 28              37    yes           20                   7             163
-## 29              40     no           29                   0             167
-## 30              41     no           21                   0             155
-## 31              41     no           35                   0             172
-## 32              35    yes           41                   7             166
-## 33              40     no           24                   0             168
-## 34              39    yes           23                  17             157
-## 35              42     no           24                   0             175
-## 36              42     no           21                   0             165
-## 37              33    yes           20                   7             161
-## 38              33     no           24                   0             149
-## 39              39     no           19                   0             165
-## 40              40    yes           31                  12             163
-## 41              45    yes           28                  25             163
-## 42              44     no           20                   0             174
-##    maternal.prepregnant.weight paternal.age paternal.education
-## 1                           57           NA                 NA
-## 2                           62           27                 14
-## 3                           62           37                 14
-## 4                           66           46                 NA
-## 5                           53           24                 12
-## 6                           52           23                 14
-## 7                           62           30                 10
-## 8                           64           25                 12
-## 9                           57           32                 16
-## 10                          64           38                 14
-## 11                          48           22                 14
-## 12                          61           31                 16
-## 13                          51           31                 16
-## 14                          60           20                 14
-## 15                          62           19                 12
-## 16                          59           24                 12
-## 17                          50           31                 16
-## 18                          48           37                 12
-## 19                          69           23                 16
-## 20                          70           38                 14
-## 21                          50           20                 12
-## 22                          57           23                 12
-## 23                          78           40                 16
-## 24                          54           39                 10
-## 25                          61           NA                 NA
-## 26                          57           23                 10
-## 27                          53           24                 16
-## 28                          47           20                 10
-## 29                          60           30                 16
-## 30                          55           25                 14
-## 31                          58           31                 16
-## 32                          57           37                 14
-## 33                          53           29                 16
-## 34                          48           NA                 NA
-## 35                          66           30                 12
-## 36                          61           21                 10
-## 37                          50           20                 10
-## 38                          45           26                 16
-## 39                          57           NA                 NA
-## 40                          49           41                 12
-## 41                          54           30                 16
-## 42                          68           26                 14
-##    paternal.cigarettes paternal.height low.birthweight geriatric.pregnancy
-## 1                   NA              NA               0               FALSE
-## 2                    0             178               0               FALSE
-## 3                    0             170               0               FALSE
-## 4                    0             175               0                TRUE
-## 5                    7             179               0               FALSE
-## 6                   25              NA               1               FALSE
-## 7                   25             181               0               FALSE
-## 8                   25             175               0               FALSE
-## 9                   50             194               0               FALSE
-## 10                  50             180               0               FALSE
-## 11                   0             179               0               FALSE
-## 12                   0             173               0                TRUE
-## 13                  25             185               0               FALSE
-## 14                   0             183               0               FALSE
-## 15                   0             183               0               FALSE
-## 16                  12             185               0               FALSE
-## 17                   0             173               0               FALSE
-## 18                  25             170               0               FALSE
-## 19                   2             181               0               FALSE
-## 20                  25             180               0               FALSE
-## 21                   7             172               0               FALSE
-## 22                  50             186               1               FALSE
-## 23                  50             178               0               FALSE
-## 24                   0             171               0               FALSE
-## 25                  NA              NA               0               FALSE
-## 26                  35             179               0               FALSE
-## 27                  12             176               0               FALSE
-## 28                  35             185               1               FALSE
-## 29                  NA             182               0               FALSE
-## 30                  25             183               0               FALSE
-## 31                  25             185               0                TRUE
-## 32                  25             173               1                TRUE
-## 33                   0             181               0               FALSE
-## 34                  NA              NA               0               FALSE
-## 35                   0             184               0               FALSE
-## 36                  25             185               0               FALSE
-## 37                  35             180               1               FALSE
-## 38                   0             169               1               FALSE
-## 39                  NA              NA               0               FALSE
-## 40                  50             191               0               FALSE
-## 41                   0             183               0               FALSE
-## 42                  25             189               0               FALSE</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data-frames.html#cb13-1" aria-hidden="true" tabindex="-1"></a>birthweight</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-69">Table 3.1: </span>The birthweight data set.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+birth.date
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+location
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+length
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+birthweight
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+head.circumference
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+weeks.gestation
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+smoker
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.age
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.cigarettes
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.height
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.prepregnant.weight
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+paternal.age
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+paternal.education
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+paternal.cigarettes
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+paternal.height
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+low.birthweight
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+geriatric.pregnancy
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1107
+</td>
+<td style="text-align:left;">
+1/25/1967
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.23
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+697
+</td>
+<td style="text-align:left;">
+2/6/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+3.03
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+162
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+178
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1683
+</td>
+<td style="text-align:left;">
+2/14/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+3/9/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.55
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+161
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1522
+</td>
+<td style="text-align:left;">
+3/13/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+2.74
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+156
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+569
+</td>
+<td style="text-align:left;">
+3/23/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+365
+</td>
+<td style="text-align:left;">
+4/23/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.53
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+181
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+808
+</td>
+<td style="text-align:left;">
+5/5/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+2.92
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1369
+</td>
+<td style="text-align:left;">
+6/4/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+3.18
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+162
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+194
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1023
+</td>
+<td style="text-align:left;">
+6/7/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+822
+</td>
+<td style="text-align:left;">
+6/14/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+3.42
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+157
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1272
+</td>
+<td style="text-align:left;">
+6/20/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+2.75
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1262
+</td>
+<td style="text-align:left;">
+6/25/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.19
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+575
+</td>
+<td style="text-align:left;">
+7/12/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+2.78
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1016
+</td>
+<td style="text-align:left;">
+7/13/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+4.32
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+171
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+792
+</td>
+<td style="text-align:left;">
+9/7/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.64
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+820
+</td>
+<td style="text-align:left;">
+10/7/1967
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.77
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+157
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+752
+</td>
+<td style="text-align:left;">
+10/19/1967
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+152
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+619
+</td>
+<td style="text-align:left;">
+11/1/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.41
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+181
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+181
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1764
+</td>
+<td style="text-align:left;">
+12/7/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+4.57
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1081
+</td>
+<td style="text-align:left;">
+12/14/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:right;">
+3.63
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+516
+</td>
+<td style="text-align:left;">
+1/8/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+2.66
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+186
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+272
+</td>
+<td style="text-align:left;">
+1/10/1968
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.86
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+178
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+321
+</td>
+<td style="text-align:left;">
+1/21/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+3.11
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+158
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+171
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1636
+</td>
+<td style="text-align:left;">
+2/2/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+3.93
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1360
+</td>
+<td style="text-align:left;">
+2/16/1968
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+4.55
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+162
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1388
+</td>
+<td style="text-align:left;">
+2/22/1968
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+3.14
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+176
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1363
+</td>
+<td style="text-align:left;">
+4/2/1968
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+2.37
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1058
+</td>
+<td style="text-align:left;">
+4/24/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+182
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+755
+</td>
+<td style="text-align:left;">
+4/25/1968
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.20
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+155
+</td>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+462
+</td>
+<td style="text-align:left;">
+6/19/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+4.10
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+300
+</td>
+<td style="text-align:left;">
+7/18/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+2.05
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+166
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1088
+</td>
+<td style="text-align:left;">
+7/24/1968
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+3.27
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+181
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:left;">
+8/12/1968
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+157
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+553
+</td>
+<td style="text-align:left;">
+8/17/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:right;">
+3.94
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+184
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1191
+</td>
+<td style="text-align:left;">
+9/7/1968
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.65
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+431
+</td>
+<td style="text-align:left;">
+9/16/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+161
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1313
+</td>
+<td style="text-align:left;">
+9/27/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+2.65
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+149
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+169
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1600
+</td>
+<td style="text-align:left;">
+10/9/1968
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+2.90
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+532
+</td>
+<td style="text-align:left;">
+10/25/1968
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.59
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+191
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+223
+</td>
+<td style="text-align:left;">
+12/11/1968
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+3.87
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1187
+</td>
+<td style="text-align:left;">
+12/19/1968
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+4.07
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+174
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>The data frame format should look familiar. It’s a lot like a spreadsheet.</p>
 <p>Generally, we don’t want to operate on the entire data frame. For example, to calculate the mean birth weight, we don’t need the information in the “paternal.education” column.</p>
-<p>There are three ways to subset data: $, [[, and [.</p>
+<p>There are three ways to have R subset the data frame: <code>$</code>, <code>[[</code>, and <code>[</code>.</p>
 </div>
 <div id="selecting-a-single-column-using-the-and-operators" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Selecting a single column using the $ and [[ operators</h2>
-<p>The simplest way to get all the values in the “birthweight” column is with the $ operator.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-frames.html#cb10-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>birthweight</span></code></pre></div>
+<p>The simplest way to get all the values in the “birthweight” column is with the <code>$</code> operator.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-frames.html#cb14-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>birthweight</span></code></pre></div>
 <pre><code>##  [1] 3.23 3.03 3.35 3.55 2.74 2.51 3.53 2.92 3.18 3.00 3.42 2.75 3.19 2.78 4.32
 ## [16] 3.64 3.77 3.32 3.41 4.57 3.63 2.66 3.86 3.11 3.93 4.55 3.14 2.37 3.15 3.20
 ## [31] 4.10 2.05 3.27 3.32 3.94 3.65 1.92 2.65 2.90 3.59 3.87 4.07</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-frames.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(birthweight<span class="sc">$</span>birthweight)</span></code></pre></div>
+<p>Notice that there are now three numbers inside brackets: one at the beginning of each line of output. These are the indices (locations) of the following number within the output vector. They give us a general idea of the length of the vector, and allow us to determine the value of a particular observation at a glance. For example, we can answer the question “what was the birth weight of the 34th baby?”</p>
+<p>Once the vector of birth weights has been extracted from the rest of the data frame, it can be used to calculate a mean.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-frames.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(birthweight<span class="sc">$</span>birthweight)</span></code></pre></div>
 <pre><code>## [1] 3.312857</code></pre>
-<p>This $ operator is a shortcut for the [[ sub-setting operator, which requires typing six characters (two pairs of square brackets and a pair of quotation marks). They function in the same way, returning the <em>value</em> of the element named.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-frames.html#cb14-1" aria-hidden="true" tabindex="-1"></a>birthweight[[<span class="st">&quot;birthweight&quot;</span>]]</span></code></pre></div>
+<p>This <code>$</code> operator is a shortcut for the <code>[[</code> sub-setting operator, which requires typing six additional characters (two pairs of square brackets and a pair of quotation marks). They function in the same way, returning the value of the element named.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-frames.html#cb18-1" aria-hidden="true" tabindex="-1"></a>birthweight[[<span class="st">&quot;birthweight&quot;</span>]]</span></code></pre></div>
 <pre><code>##  [1] 3.23 3.03 3.35 3.55 2.74 2.51 3.53 2.92 3.18 3.00 3.42 2.75 3.19 2.78 4.32
 ## [16] 3.64 3.77 3.32 3.41 4.57 3.63 2.66 3.86 3.11 3.93 4.55 3.14 2.37 3.15 3.20
 ## [31] 4.10 2.05 3.27 3.32 3.94 3.65 1.92 2.65 2.90 3.59 3.87 4.07</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-frames.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(birthweight[[<span class="st">&quot;birthweight&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-frames.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(birthweight[[<span class="st">&quot;birthweight&quot;</span>]])</span></code></pre></div>
 <pre><code>## [1] 3.312857</code></pre>
-<p>One difference to note is that while [[ works with the <em>index</em>, or column number, $ does not.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-frames.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which column contains the birthweight?</span></span>
-<span id="cb18-2"><a href="data-frames.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lines beginning with a &#39;#&#39; are comments, and are not executed by R</span></span>
-<span id="cb18-3"><a href="data-frames.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(birthweight)</span></code></pre></div>
+<p>One difference to note is that while <code>[[</code> works with the index, or column number, <code>$</code> does not.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-frames.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which column contains the birth weight?</span></span>
+<span id="cb22-2"><a href="data-frames.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lines beginning with a &#39;#&#39; are comments, and are not executed by R</span></span>
+<span id="cb22-3"><a href="data-frames.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(birthweight)</span></code></pre></div>
 <pre><code>##  [1] &quot;ID&quot;                          &quot;birth.date&quot;                 
 ##  [3] &quot;location&quot;                    &quot;length&quot;                     
 ##  [5] &quot;birthweight&quot;                 &quot;head.circumference&quot;         
@@ -423,119 +2698,663 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [13] &quot;paternal.age&quot;                &quot;paternal.education&quot;         
 ## [15] &quot;paternal.cigarettes&quot;         &quot;paternal.height&quot;            
 ## [17] &quot;low.birthweight&quot;             &quot;geriatric.pregnancy&quot;</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-frames.html#cb20-1" aria-hidden="true" tabindex="-1"></a>birthweight[[<span class="dv">5</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-frames.html#cb24-1" aria-hidden="true" tabindex="-1"></a>birthweight[[<span class="dv">5</span>]]</span></code></pre></div>
 <pre><code>##  [1] 3.23 3.03 3.35 3.55 2.74 2.51 3.53 2.92 3.18 3.00 3.42 2.75 3.19 2.78 4.32
 ## [16] 3.64 3.77 3.32 3.41 4.57 3.63 2.66 3.86 3.11 3.93 4.55 3.14 2.37 3.15 3.20
 ## [31] 4.10 2.05 3.27 3.32 3.94 3.65 1.92 2.65 2.90 3.59 3.87 4.07</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-frames.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(birthweight[[<span class="dv">5</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-frames.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(birthweight[[<span class="dv">5</span>]])</span></code></pre></div>
 <pre><code>## [1] 3.312857</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-frames.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># un-comment the following line and see what happens:</span></span>
-<span id="cb24-2"><a href="data-frames.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#birthweight$5</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-frames.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the $ operator can&#39;t take an index</span></span>
+<span id="cb28-2"><a href="data-frames.html#cb28-2" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span><span class="dv">5</span></span></code></pre></div>
 </div>
 <div id="selecting-a-subset-of-the-data-frame-using-the-operator" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Selecting a subset of the data frame using the [ operator</h2>
-<p>Unlike $ and [[, which return the value(s) contained in the specified element, [ returns an object of the same type it is used to subset. Using [ to retrieve the fifth column will return a data frame with 42 rows and 1 column. This may not seem like a big difference, but it can be an important distinction in some cases.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-frames.html#cb25-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="dv">5</span>]</span></code></pre></div>
-<pre><code>##    birthweight
-## 1         3.23
-## 2         3.03
-## 3         3.35
-## 4         3.55
-## 5         2.74
-## 6         2.51
-## 7         3.53
-## 8         2.92
-## 9         3.18
-## 10        3.00
-## 11        3.42
-## 12        2.75
-## 13        3.19
-## 14        2.78
-## 15        4.32
-## 16        3.64
-## 17        3.77
-## 18        3.32
-## 19        3.41
-## 20        4.57
-## 21        3.63
-## 22        2.66
-## 23        3.86
-## 24        3.11
-## 25        3.93
-## 26        4.55
-## 27        3.14
-## 28        2.37
-## 29        3.15
-## 30        3.20
-## 31        4.10
-## 32        2.05
-## 33        3.27
-## 34        3.32
-## 35        3.94
-## 36        3.65
-## 37        1.92
-## 38        2.65
-## 39        2.90
-## 40        3.59
-## 41        3.87
-## 42        4.07</code></pre>
-<p>Because the [ operator returns a new data frame, it can be used to specify multiple rows and / or columns.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-frames.html#cb27-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</span></code></pre></div>
-<pre><code>##      ID birthweight
-## 1  1107        3.23
-## 2   697        3.03
-## 3  1683        3.35
-## 4    27        3.55
-## 5  1522        2.74
-## 6   569        2.51
-## 7   365        3.53
-## 8   808        2.92
-## 9  1369        3.18
-## 10 1023        3.00
-## 11  822        3.42
-## 12 1272        2.75
-## 13 1262        3.19
-## 14  575        2.78
-## 15 1016        4.32
-## 16  792        3.64
-## 17  820        3.77
-## 18  752        3.32
-## 19  619        3.41
-## 20 1764        4.57
-## 21 1081        3.63
-## 22  516        2.66
-## 23  272        3.86
-## 24  321        3.11
-## 25 1636        3.93
-## 26 1360        4.55
-## 27 1388        3.14
-## 28 1363        2.37
-## 29 1058        3.15
-## 30  755        3.20
-## 31  462        4.10
-## 32  300        2.05
-## 33 1088        3.27
-## 34   57        3.32
-## 35  553        3.94
-## 36 1191        3.65
-## 37  431        1.92
-## 38 1313        2.65
-## 39 1600        2.90
-## 40  532        3.59
-## 41  223        3.87
-## 42 1187        4.07</code></pre>
+<p>Unlike <code>$</code> and <code>[[</code>, which return the value(s) contained in the specified element, <code>[</code> returns an object of the same type it is used to subset. Using <code>[</code> to retrieve the fifth column will return a data frame with 42 rows and 1 column. This may not seem like a big difference, but it can be an important distinction in some cases.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-frames.html#cb29-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="dv">5</span>]</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-76">Table 3.2: </span>Results of birthweight[5].
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+birthweight
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+3.23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.03
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.35
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.55
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.74
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.51
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.53
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.92
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.42
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.75
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.78
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.64
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.77
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.41
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.57
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.63
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.66
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.86
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.93
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.55
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.37
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.05
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.27
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.94
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.65
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1.92
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.65
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.90
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.59
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.87
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.07
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Because the <code>[</code> operator returns a new data frame, it can be used to specify multiple rows and / or columns.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-frames.html#cb30-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-78">Table 3.3: </span>Results of birthweight[c(1,5)].
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+birthweight
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1107
+</td>
+<td style="text-align:right;">
+3.23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+697
+</td>
+<td style="text-align:right;">
+3.03
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1683
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+3.55
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1522
+</td>
+<td style="text-align:right;">
+2.74
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+569
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+365
+</td>
+<td style="text-align:right;">
+3.53
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+808
+</td>
+<td style="text-align:right;">
+2.92
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1369
+</td>
+<td style="text-align:right;">
+3.18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1023
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+822
+</td>
+<td style="text-align:right;">
+3.42
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1272
+</td>
+<td style="text-align:right;">
+2.75
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1262
+</td>
+<td style="text-align:right;">
+3.19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+575
+</td>
+<td style="text-align:right;">
+2.78
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1016
+</td>
+<td style="text-align:right;">
+4.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+792
+</td>
+<td style="text-align:right;">
+3.64
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+820
+</td>
+<td style="text-align:right;">
+3.77
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+752
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+619
+</td>
+<td style="text-align:right;">
+3.41
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1764
+</td>
+<td style="text-align:right;">
+4.57
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1081
+</td>
+<td style="text-align:right;">
+3.63
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+516
+</td>
+<td style="text-align:right;">
+2.66
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+272
+</td>
+<td style="text-align:right;">
+3.86
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+321
+</td>
+<td style="text-align:right;">
+3.11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1636
+</td>
+<td style="text-align:right;">
+3.93
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1360
+</td>
+<td style="text-align:right;">
+4.55
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1388
+</td>
+<td style="text-align:right;">
+3.14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1363
+</td>
+<td style="text-align:right;">
+2.37
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1058
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+755
+</td>
+<td style="text-align:right;">
+3.20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+462
+</td>
+<td style="text-align:right;">
+4.10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+300
+</td>
+<td style="text-align:right;">
+2.05
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1088
+</td>
+<td style="text-align:right;">
+3.27
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+553
+</td>
+<td style="text-align:right;">
+3.94
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1191
+</td>
+<td style="text-align:right;">
+3.65
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+431
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1313
+</td>
+<td style="text-align:right;">
+2.65
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1600
+</td>
+<td style="text-align:right;">
+2.90
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+532
+</td>
+<td style="text-align:right;">
+3.59
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+223
+</td>
+<td style="text-align:right;">
+3.87
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1187
+</td>
+<td style="text-align:right;">
+4.07
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>The <code>c()</code> function creates a vector. This allows R to treat indices 1 and 5 as a single argument. This is critical, because <code>birthweight[1,5]</code> does not produce the same effect at all.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-frames.html#cb29-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="dv">1</span>, <span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-frames.html#cb31-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="dv">1</span>, <span class="dv">5</span>]</span></code></pre></div>
 <pre><code>## [1] 3.23</code></pre>
 <p>What happened?</p>
-<p>When there are two arguments provided to [, R interprets these as the index on the first (row) and second (column) dimension of the object. The value returned is the content of the first row, fifth column: the birth weight of individual 1107.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-frames.html#cb31-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">29</span>), <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</span></code></pre></div>
-<pre><code>##      ID birthweight
-## 2   697        3.03
-## 7   365        3.53
-## 29 1058        3.15</code></pre>
-<p>R will also accept row or column names, and the use of the minus sign to exclude indices.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-frames.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(birthweight)</span></code></pre></div>
+<p>When there are two arguments provided to <code>[</code>, R interprets these as the index on the first (row) and second (column) dimension of the object. The value returned is the content of the first row, fifth column: the birth weight of individual 1107.</p>
+<p>The default behavior of <code>[</code> is to return the entire object. The first argument acts as a sort of filter on the first dimension, the second argument as a filter on the second dimension, and so on. Leaving the space before the comma blank will return all rows (no filter applied), while leaving the space following the comma blank will return all columns. <strong>Be sure to try variations on the example code below to see what happens.</strong></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-frames.html#cb33-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">29</span>), <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</span></code></pre></div>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-81">Table 3.4: </span>Results of birthweight[c(2,7,29), c(1,5)].
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+ID
+</th>
+<th style="text-align:right;">
+birthweight
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+697
+</td>
+<td style="text-align:right;">
+3.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+365
+</td>
+<td style="text-align:right;">
+3.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+29
+</td>
+<td style="text-align:right;">
+1058
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+</tr>
+</tbody>
+</table>
+<p>Using a minus sign before an index or group of indices will exclude the specified rows / columns.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-frames.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(birthweight)</span></code></pre></div>
 <pre><code>##  [1] &quot;ID&quot;                          &quot;birth.date&quot;                 
 ##  [3] &quot;location&quot;                    &quot;length&quot;                     
 ##  [5] &quot;birthweight&quot;                 &quot;head.circumference&quot;         
@@ -545,178 +3364,2007 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [13] &quot;paternal.age&quot;                &quot;paternal.education&quot;         
 ## [15] &quot;paternal.cigarettes&quot;         &quot;paternal.height&quot;            
 ## [17] &quot;low.birthweight&quot;             &quot;geriatric.pregnancy&quot;</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-frames.html#cb35-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="st">&quot;maternal.cigarettes&quot;</span>, <span class="st">&quot;birthweight&quot;</span>)]</span></code></pre></div>
-<pre><code>##    maternal.cigarettes birthweight
-## 1                    0        3.23
-## 2                    0        3.03
-## 3                    0        3.35
-## 4                   25        3.55
-## 5                   17        2.74
-## 6                    7        2.51
-## 7                   25        3.53
-## 8                    0        2.92
-## 9                   25        3.18
-## 10                  12        3.00
-## 11                   0        3.42
-## 12                  50        2.75
-## 13                  35        3.19
-## 14                   7        2.78
-## 15                   0        4.32
-## 16                   2        3.64
-## 17                   0        3.77
-## 18                  12        3.32
-## 19                  25        3.41
-## 20                  12        4.57
-## 21                   0        3.63
-## 22                  35        2.66
-## 23                  25        3.86
-## 24                   0        3.11
-## 25                   0        3.93
-## 26                   0        4.55
-## 27                   7        3.14
-## 28                   7        2.37
-## 29                   0        3.15
-## 30                   0        3.20
-## 31                   0        4.10
-## 32                   7        2.05
-## 33                   0        3.27
-## 34                  17        3.32
-## 35                   0        3.94
-## 36                   0        3.65
-## 37                   7        1.92
-## 38                   0        2.65
-## 39                   0        2.90
-## 40                  12        3.59
-## 41                  25        3.87
-## 42                   0        4.07</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-frames.html#cb37-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">13</span>), <span class="sc">-</span><span class="fu">c</span>(<span class="dv">13</span><span class="sc">:</span><span class="dv">16</span>)]</span></code></pre></div>
-<pre><code>##      ID birth.date    location length birthweight head.circumference
-## 1  1107  1/25/1967     General     52        3.23                 36
-## 3  1683  2/14/1967 Silver Hill     53        3.35                 33
-## 5  1522  3/13/1967    Memorial     50        2.74                 33
-## 6   569  3/23/1967    Memorial     50        2.51                 35
-## 7   365  4/23/1967    Memorial     52        3.53                 37
-## 8   808   5/5/1967 Silver Hill     48        2.92                 33
-## 9  1369   6/4/1967 Silver Hill     49        3.18                 34
-## 10 1023   6/7/1967    Memorial     52        3.00                 35
-## 11  822  6/14/1967    Memorial     50        3.42                 35
-## 12 1272  6/20/1967    Memorial     53        2.75                 32
-## 13 1262  6/25/1967 Silver Hill     53        3.19                 34
-##    weeks.gestation smoker maternal.age maternal.cigarettes maternal.height
-## 1               38     no           31                   0             164
-## 3               41     no           27                   0             164
-## 5               39    yes           21                  17             156
-## 6               39    yes           22                   7             159
-## 7               40    yes           26                  25             170
-## 8               34     no           26                   0             167
-## 9               38    yes           31                  25             162
-## 10              38    yes           30                  12             165
-## 11              38     no           20                   0             157
-## 12              40    yes           37                  50             168
-## 13              41    yes           27                  35             163
-##    maternal.prepregnant.weight low.birthweight geriatric.pregnancy
-## 1                           57               0               FALSE
-## 3                           62               0               FALSE
-## 5                           53               0               FALSE
-## 6                           52               1               FALSE
-## 7                           62               0               FALSE
-## 8                           64               0               FALSE
-## 9                           57               0               FALSE
-## 10                          64               0               FALSE
-## 11                          48               0               FALSE
-## 12                          61               0                TRUE
-## 13                          51               0               FALSE</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-frames.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># exclude paternal data (columns 13-16)</span></span>
+<span id="cb36-2"><a href="data-frames.html#cb36-2" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">13</span>), <span class="sc">-</span><span class="fu">c</span>(<span class="dv">13</span><span class="sc">:</span><span class="dv">16</span>)]</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-84">Table 3.5: </span>Results of birthweight[c(1,3,5:13), -c(13:16)].
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+birth.date
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+location
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+length
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+birthweight
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+head.circumference
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+weeks.gestation
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+smoker
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.age
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.cigarettes
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.height
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.prepregnant.weight
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+low.birthweight
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+geriatric.pregnancy
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1107
+</td>
+<td style="text-align:left;">
+1/25/1967
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.23
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1683
+</td>
+<td style="text-align:left;">
+2/14/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+1522
+</td>
+<td style="text-align:left;">
+3/13/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+2.74
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+156
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+569
+</td>
+<td style="text-align:left;">
+3/23/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+365
+</td>
+<td style="text-align:left;">
+4/23/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.53
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+808
+</td>
+<td style="text-align:left;">
+5/5/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+2.92
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+1369
+</td>
+<td style="text-align:left;">
+6/4/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+3.18
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+162
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+1023
+</td>
+<td style="text-align:left;">
+6/7/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:right;">
+822
+</td>
+<td style="text-align:left;">
+6/14/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+3.42
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+157
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:right;">
+1272
+</td>
+<td style="text-align:left;">
+6/20/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+2.75
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:right;">
+1262
+</td>
+<td style="text-align:left;">
+6/25/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.19
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>R will also accept row or column names in quotations as a way to subset the data frame.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-frames.html#cb37-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="st">&quot;maternal.cigarettes&quot;</span>, <span class="st">&quot;birthweight&quot;</span>)]</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-86">Table 3.6: </span>Results of birthweight[c(“maternal.cigarettes”, “birthweight”)].
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.cigarettes
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+birthweight
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.03
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+3.55
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+2.74
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+3.53
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.92
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+3.18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.42
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+2.75
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+3.19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2.78
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3.64
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.77
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+3.41
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4.57
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.63
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+2.66
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+3.86
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.93
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.55
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+3.14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2.37
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2.05
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.27
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.94
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.65
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.65
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.90
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3.59
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+3.87
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.07
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Finally, vectors of logical (TRUE/FALSE) values can be used to subset data. Rows or columns corresponding to “TRUE” elements will be returned, while rows or columns corresponding to “FALSE” elements will be excluded.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-frames.html#cb39-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">13</span>), <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)]</span></code></pre></div>
-<pre><code>##      ID birth.date    location length birthweight head.circumference
-## 1  1107  1/25/1967     General     52        3.23                 36
-## 3  1683  2/14/1967 Silver Hill     53        3.35                 33
-## 5  1522  3/13/1967    Memorial     50        2.74                 33
-## 6   569  3/23/1967    Memorial     50        2.51                 35
-## 7   365  4/23/1967    Memorial     52        3.53                 37
-## 8   808   5/5/1967 Silver Hill     48        2.92                 33
-## 9  1369   6/4/1967 Silver Hill     49        3.18                 34
-## 10 1023   6/7/1967    Memorial     52        3.00                 35
-## 11  822  6/14/1967    Memorial     50        3.42                 35
-## 12 1272  6/20/1967    Memorial     53        2.75                 32
-## 13 1262  6/25/1967 Silver Hill     53        3.19                 34
-##    weeks.gestation smoker maternal.age maternal.cigarettes maternal.height
-## 1               38     no           31                   0             164
-## 3               41     no           27                   0             164
-## 5               39    yes           21                  17             156
-## 6               39    yes           22                   7             159
-## 7               40    yes           26                  25             170
-## 8               34     no           26                   0             167
-## 9               38    yes           31                  25             162
-## 10              38    yes           30                  12             165
-## 11              38     no           20                   0             157
-## 12              40    yes           37                  50             168
-## 13              41    yes           27                  35             163
-##    maternal.prepregnant.weight low.birthweight geriatric.pregnancy
-## 1                           57               0               FALSE
-## 3                           62               0               FALSE
-## 5                           53               0               FALSE
-## 6                           52               1               FALSE
-## 7                           62               0               FALSE
-## 8                           64               0               FALSE
-## 9                           57               0               FALSE
-## 10                          64               0               FALSE
-## 11                          48               0               FALSE
-## 12                          61               0                TRUE
-## 13                          51               0               FALSE</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-frames.html#cb38-1" aria-hidden="true" tabindex="-1"></a>birthweight[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">13</span>), <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)]</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-88">Table 3.7: </span>Results of birthweight[c(1,3,5:13), c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE)].
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+birth.date
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+location
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+length
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+birthweight
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+head.circumference
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+weeks.gestation
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+smoker
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.age
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.cigarettes
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.height
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.prepregnant.weight
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+low.birthweight
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+geriatric.pregnancy
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1107
+</td>
+<td style="text-align:left;">
+1/25/1967
+</td>
+<td style="text-align:left;">
+General
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.23
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+1683
+</td>
+<td style="text-align:left;">
+2/14/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+1522
+</td>
+<td style="text-align:left;">
+3/13/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+2.74
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+156
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+569
+</td>
+<td style="text-align:left;">
+3/23/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+365
+</td>
+<td style="text-align:left;">
+4/23/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.53
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+808
+</td>
+<td style="text-align:left;">
+5/5/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+2.92
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+1369
+</td>
+<td style="text-align:left;">
+6/4/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+3.18
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+162
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+1023
+</td>
+<td style="text-align:left;">
+6/7/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:right;">
+822
+</td>
+<td style="text-align:left;">
+6/14/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+3.42
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+157
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:right;">
+1272
+</td>
+<td style="text-align:left;">
+6/20/1967
+</td>
+<td style="text-align:left;">
+Memorial
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+2.75
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:right;">
+1262
+</td>
+<td style="text-align:left;">
+6/25/1967
+</td>
+<td style="text-align:left;">
+Silver Hill
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+3.19
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>This is much more useful than it may sound.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-frames.html#cb41-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>length</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-frames.html#cb39-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>length</span></code></pre></div>
 <pre><code>##  [1] 52 48 53 53 50 50 52 48 49 52 50 53 53 50 53 53 52 49 52 58 54 47 52 48 51
 ## [26] 56 51 48 53 53 58 46 51 51 54 53 48 43 53 53 50 53</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-frames.html#cb43-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>length <span class="sc">&lt;</span> <span class="dv">50</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-frames.html#cb41-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>length <span class="sc">&lt;</span> <span class="dv">50</span></span></code></pre></div>
 <pre><code>##  [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
 ## [13] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
 ## [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
 ## [37]  TRUE  TRUE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-frames.html#cb45-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>length <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">17</span>,<span class="dv">18</span>)]</span></code></pre></div>
-<pre><code>##      ID length birthweight head.circumference weeks.gestation smoker
-## 2   697     48        3.03                 35              39     no
-## 8   808     48        2.92                 33              34     no
-## 9  1369     49        3.18                 34              38    yes
-## 18  752     49        3.32                 36              40    yes
-## 22  516     47        2.66                 33              35    yes
-## 24  321     48        3.11                 33              37     no
-## 28 1363     48        2.37                 30              37    yes
-## 32  300     46        2.05                 32              35    yes
-## 37  431     48        1.92                 30              33    yes
-## 38 1313     43        2.65                 32              33     no
-##    maternal.age maternal.cigarettes maternal.height maternal.prepregnant.weight
-## 2            27                   0             162                          62
-## 8            26                   0             167                          64
-## 9            31                  25             162                          57
-## 18           27                  12             152                          48
-## 22           20                  35             170                          57
-## 24           28                   0             158                          54
-## 28           20                   7             163                          47
-## 32           41                   7             166                          57
-## 37           20                   7             161                          50
-## 38           24                   0             149                          45
-##    low.birthweight geriatric.pregnancy
-## 2                0               FALSE
-## 8                0               FALSE
-## 9                0               FALSE
-## 18               0               FALSE
-## 22               1               FALSE
-## 24               0               FALSE
-## 28               1               FALSE
-## 32               1                TRUE
-## 37               1               FALSE
-## 38               1               FALSE</code></pre>
+<p>Since the result of the <code>birthweight$length &lt; 50</code> operation is a vector of TRUE / FALSE values, it can be used to subset the data frame.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-frames.html#cb43-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>length <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">17</span>,<span class="dv">18</span>)]</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table>
+<caption>
+<span id="tab:unnamed-chunk-91">Table 3.8: </span>Results of birthweight[birthweight$length &lt; 50, c(1,4:12,17,18)].
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+length
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+birthweight
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+head.circumference
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+weeks.gestation
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+smoker
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.age
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.cigarettes
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.height
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+maternal.prepregnant.weight
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+low.birthweight
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+geriatric.pregnancy
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+697
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+3.03
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+162
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+808
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+2.92
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+1369
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+3.18
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+162
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+18
+</td>
+<td style="text-align:right;">
+752
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+3.32
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+152
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:right;">
+516
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+2.66
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:right;">
+321
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+3.11
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+158
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+28
+</td>
+<td style="text-align:right;">
+1363
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+2.37
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+32
+</td>
+<td style="text-align:right;">
+300
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+2.05
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+166
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+37
+</td>
+<td style="text-align:right;">
+431
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+161
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+38
+</td>
+<td style="text-align:right;">
+1313
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+2.65
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+149
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="subsetting-a-vector" class="section level3" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Subsetting a vector</h3>
-<p>A vector, like a column of a data frame, can be subsetted using the [ operator with an index or another vector.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-frames.html#cb47-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>length[<span class="dv">1</span>]</span></code></pre></div>
+<p>A vector, like a column of a data frame, can be subsetted using the <code>[</code> operator with an index or another vector.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-frames.html#cb44-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>length[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 52</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-frames.html#cb49-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>length[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-frames.html#cb46-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>length[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span></code></pre></div>
 <pre><code>## [1] 52 48</code></pre>
-<p>Take a few minutes to explore subsetting.</p>
-
 </div>
+</div>
+<div id="exercise-1-exploring-the-data" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Exercise 1: exploring the data</h2>
+<p>Use the <code>min()</code>, <code>max()</code>, and <code>mean()</code> functions on subsets of the data frame to answer one or more of the following questions. Work together. Often there will be more than one way to arrive at the answer.</p>
+<ul>
+<li>What is the range of paternal ages in the data set?</li>
+<li>What is the mean maternal age?</li>
+<li>What is the age of the mother with the highest maternal.cigarettes value?</li>
+<li>Is the mean pre-pregnant weight higher or lower among women who gave birth to low birth weight children?</li>
+</ul>
+<p>What other questions are of interest to you? Can you answer any of them with the functions we have used so far?</p>
+
 </div>
 </div>
             </section>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 Troubleshooting | Troubleshooting</title>
-  <meta name="description" content="9 Troubleshooting | Troubleshooting" />
+  <title>9 Troubleshooting | Introduction to R for Bioinformatics</title>
+  <meta name="description" content="9 Troubleshooting | Introduction to R for Bioinformatics" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 Troubleshooting | Troubleshooting" />
+  <meta property="og:title" content="9 Troubleshooting | Introduction to R for Bioinformatics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 Troubleshooting | Troubleshooting" />
+  <meta name="twitter:title" content="9 Troubleshooting | Introduction to R for Bioinformatics" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="UC Davis Bioinformatics Core" />
 
 
-<meta name="date" content="2021-10-21" />
+<meta name="date" content="2022-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,12 +53,15 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -144,10 +147,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html"><i class="fa fa-check"></i><b>1</b> RStudio and R notebooks</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#rstudio-1"><i class="fa fa-check"></i><b>1.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#rstudio-1"><i class="fa fa-check"></i><b>1.1</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#the-console"><i class="fa fa-check"></i><b>1.1.1</b> The console</a></li>
+<li class="chapter" data-level="1.1.2" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#the-workspace-browser"><i class="fa fa-check"></i><b>1.1.2</b> The workspace browser</a></li>
+<li class="chapter" data-level="1.1.3" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#help-documentation"><i class="fa fa-check"></i><b>1.1.3</b> Help documentation</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="rstudio-and-r-notebooks.html"><a href="rstudio-and-r-notebooks.html#r-notebooks"><i class="fa fa-check"></i><b>1.2</b> R notebooks</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html"><i class="fa fa-check"></i><b>2</b> Importing and exporting data</a></li>
+<li class="chapter" data-level="2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html"><i class="fa fa-check"></i><b>2</b> Importing and exporting data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html#import-data-using-read.csv"><i class="fa fa-check"></i><b>2.1</b> Import data using read.csv()</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-exporting-data.html"><a href="importing-and-exporting-data.html#export-data-using-write.csv"><i class="fa fa-check"></i><b>2.2</b> Export data using write.csv()</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>3</b> Data frames</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="data-frames.html"><a href="data-frames.html#structure-of-a-data-frame"><i class="fa fa-check"></i><b>3.1</b> Structure of a data frame</a></li>
@@ -156,11 +168,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="data-frames.html"><a href="data-frames.html#subsetting-a-vector"><i class="fa fa-check"></i><b>3.3.1</b> Subsetting a vector</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="data-frames.html"><a href="data-frames.html#exercise-1-exploring-the-data"><i class="fa fa-check"></i><b>3.4</b> Exercise 1: exploring the data</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="basic-data-types.html"><a href="basic-data-types.html"><i class="fa fa-check"></i><b>4</b> Basic data types</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="basic-data-types.html"><a href="basic-data-types.html#understanding-class"><i class="fa fa-check"></i><b>4.1</b> Understanding class</a></li>
 <li class="chapter" data-level="4.2" data-path="basic-data-types.html"><a href="basic-data-types.html#coercion-converting-between-classes"><i class="fa fa-check"></i><b>4.2</b> Coercion: converting between classes</a></li>
+<li class="chapter" data-level="4.3" data-path="basic-data-types.html"><a href="basic-data-types.html#exercise-2-converting-smoker-from-character-to-logical"><i class="fa fa-check"></i><b>4.3</b> Exercise 2: converting “smoker” from character to logical</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a>
 <ul>
@@ -168,6 +182,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#combining-functions"><i class="fa fa-check"></i><b>5.2</b> Combining functions</a></li>
 <li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#the-apply-family-of-functions"><i class="fa fa-check"></i><b>5.3</b> The apply() family of functions</a></li>
 <li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#custom-functions"><i class="fa fa-check"></i><b>5.4</b> Custom functions</a></li>
+<li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#exercise-3-summarizing-the-data"><i class="fa fa-check"></i><b>5.5</b> Exercise 3: summarizing the data</a></li>
+<li class="chapter" data-level="5.6" data-path="functions.html"><a href="functions.html#merging-data-frames"><i class="fa fa-check"></i><b>5.6</b> Merging data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="installing-packages.html"><a href="installing-packages.html"><i class="fa fa-check"></i><b>6</b> Installing packages</a></li>
 <li class="chapter" data-level="7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Introduction to the tidyverse</a>
@@ -176,14 +192,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#pipes-combining-tidyverse-functions"><i class="fa fa-check"></i><b>7.2</b> Pipes: combining tidyverse functions</a></li>
 <li class="chapter" data-level="7.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#transforming-data"><i class="fa fa-check"></i><b>7.3</b> Transforming data</a></li>
 <li class="chapter" data-level="7.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#summarizing-data"><i class="fa fa-check"></i><b>7.4</b> Summarizing data</a></li>
+<li class="chapter" data-level="7.5" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#exercise-4-converting-between-base-r-and-tidyverse"><i class="fa fa-check"></i><b>7.5</b> Exercise 4: converting between base R and Tidyverse</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="visualizations.html"><a href="visualizations.html"><i class="fa fa-check"></i><b>8</b> Visualizations</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="visualizations.html"><a href="visualizations.html#histograms-and-density-plots"><i class="fa fa-check"></i><b>8.1</b> Histograms and density plots</a></li>
-<li class="chapter" data-level="8.2" data-path="visualizations.html"><a href="visualizations.html#bar-charts"><i class="fa fa-check"></i><b>8.2</b> Bar charts</a></li>
-<li class="chapter" data-level="8.3" data-path="visualizations.html"><a href="visualizations.html#box-and-violin-plots"><i class="fa fa-check"></i><b>8.3</b> Box and violin plots</a></li>
-<li class="chapter" data-level="8.4" data-path="visualizations.html"><a href="visualizations.html#scatter-plots"><i class="fa fa-check"></i><b>8.4</b> Scatter plots</a></li>
-<li class="chapter" data-level="8.5" data-path="visualizations.html"><a href="visualizations.html#heat-maps"><i class="fa fa-check"></i><b>8.5</b> Heat maps</a></li>
+<li class="chapter" data-level="8.1" data-path="visualizations.html"><a href="visualizations.html#the-ggplot-function"><i class="fa fa-check"></i><b>8.1</b> The ggplot() function</a></li>
+<li class="chapter" data-level="8.2" data-path="visualizations.html"><a href="visualizations.html#the-geom"><i class="fa fa-check"></i><b>8.2</b> The geom</a></li>
+<li class="chapter" data-level="8.3" data-path="visualizations.html"><a href="visualizations.html#adding-color-and-fill-to-geoms"><i class="fa fa-check"></i><b>8.3</b> Adding color (and fill) to geoms</a></li>
+<li class="chapter" data-level="8.4" data-path="visualizations.html"><a href="visualizations.html#creating-faceted-plots"><i class="fa fa-check"></i><b>8.4</b> Creating faceted plots</a></li>
+<li class="chapter" data-level="8.5" data-path="visualizations.html"><a href="visualizations.html#add-and-modify-labels"><i class="fa fa-check"></i><b>8.5</b> Add and modify labels</a></li>
+<li class="chapter" data-level="8.6" data-path="visualizations.html"><a href="visualizations.html#making-global-changes-to-the-plots-appearance-using-themes"><i class="fa fa-check"></i><b>8.6</b> Making global changes to the plot’s appearance using themes</a></li>
+<li class="chapter" data-level="8.7" data-path="visualizations.html"><a href="visualizations.html#change-the-labels-for-categorical-values"><i class="fa fa-check"></i><b>8.7</b> Change the labels for categorical values</a></li>
+<li class="chapter" data-level="8.8" data-path="visualizations.html"><a href="visualizations.html#change-the-direction-of-axes-to-improve-readability"><i class="fa fa-check"></i><b>8.8</b> Change the direction of axes to improve readability</a></li>
+<li class="chapter" data-level="8.9" data-path="visualizations.html"><a href="visualizations.html#the-pivot_longer-function-revisited"><i class="fa fa-check"></i><b>8.9</b> The pivot_longer() function revisited</a></li>
+<li class="chapter" data-level="8.10" data-path="visualizations.html"><a href="visualizations.html#use-shape-and-line-type-to-convey-meaning"><i class="fa fa-check"></i><b>8.10</b> Use shape and line type to convey meaning</a></li>
+<li class="chapter" data-level="8.11" data-path="visualizations.html"><a href="visualizations.html#focus-in-on-one-portion-of-the-plot"><i class="fa fa-check"></i><b>8.11</b> Focus in on one portion of the plot</a></li>
+<li class="chapter" data-level="8.12" data-path="visualizations.html"><a href="visualizations.html#layer-multiple-geoms"><i class="fa fa-check"></i><b>8.12</b> Layer multiple geoms</a></li>
+<li class="chapter" data-level="8.13" data-path="visualizations.html"><a href="visualizations.html#ggplot2-cheat-sheet"><i class="fa fa-check"></i><b>8.13</b> ggplot2 cheat sheet</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i><b>9</b> Troubleshooting</a></li>
 <li class="divider"></li>
@@ -197,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Troubleshooting</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R for Bioinformatics</a>
           </h1>
         </div>
 
@@ -207,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="troubleshooting" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Troubleshooting</h1>
-<p>Common errors:</p>
+<p>Even advanced users of R run into problems often. Here are some of the most common errors that can often be resolved quickly:</p>
 <ul>
 <li>file is not in the right place, or is incorrectly named</li>
 <li>improperly formatted files</li>
@@ -215,6 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>spelling errors</li>
 <li>incorrectly named parameters</li>
 </ul>
+<p>For more complex errors, the help documentation of a function is a good place to start. Additionally, the online community of R users is extremely active and helpful. If you’ve got a question, it’s extremely likely it’s been asked and answered many times already!</p>
 
 </div>
             </section>
