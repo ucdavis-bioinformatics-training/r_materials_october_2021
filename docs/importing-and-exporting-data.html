@@ -24,7 +24,7 @@
 <meta name="author" content="UC Davis Bioinformatics Core" />
 
 
-<meta name="date" content="2022-01-31" />
+<meta name="date" content="2022-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -61,7 +62,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -236,20 +236,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Begin by setting up a working directory for this course.</strong></p>
 <p>We’re going to do all the work for this course in the directory we created in the last section. To make things easier, we’ll set R’s working directory to the directory where we saved our notebook. To do this, select the “Session” menu in the toolbar, then navigate to “Set Working Directory,” and click on “Choose Directory.” Choose the directory in which you saved your notebook.</p>
 <p>When you do so, you should see that a line of code ran in your console:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="importing-and-exporting-data.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Users/hannah/Desktop/intro_R/&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="importing-and-exporting-data.html#cb5-1"></a><span class="kw">setwd</span>(<span class="st">&quot;/Users/hannah/Desktop/intro_R/&quot;</span>)</span></code></pre></div>
 <p>This is the GUI at work! When you clicked on a directory in the file browser, R was actually running the code displayed in your console. In the future, you can set your working directory that way instead.</p>
 <p><strong>Download the data.</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="importing-and-exporting-data.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2022_February_Introduction_to_R_for_Bioinformatics/main/birthweight.csv&quot;</span>, <span class="st">&quot;birthweight.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="importing-and-exporting-data.html#cb6-1"></a><span class="kw">download.file</span>(<span class="st">&quot;https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2022_February_Introduction_to_R_for_Bioinformatics/main/birthweight.csv&quot;</span>, <span class="st">&quot;birthweight.csv&quot;</span>)</span></code></pre></div>
 <div id="import-data-using-read.csv" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Import data using read.csv()</h2>
 <p>Manual data entry is time-consuming and leads to errors. R has a number of functions for reading data in a variety of formats. Let’s use the <code>read.csv()</code> function to read in a spreadsheet containing data from an experiment.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="importing-and-exporting-data.html#cb7-1" aria-hidden="true" tabindex="-1"></a>birthweight <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;birthweight.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="importing-and-exporting-data.html#cb7-1"></a>birthweight &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;birthweight.csv&quot;</span>)</span></code></pre></div>
 <p>CSV stands for “comma separated value,” and the CSV file is simply a text file where each row in the file represents a row in the data table, and the columns are separated by commas. The contents of the CSV file are now stored in the variable “birthweight.”</p>
 </div>
 <div id="export-data-using-write.csv" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Export data using write.csv()</h2>
 <p>In the course of our analysis, we will add metrics to this data set. When we’re finished, we will want to be able to save our analyses. To write the contents of the birthweight object to a new CSV, we can use the <code>write.csv()</code> function.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="importing-and-exporting-data.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(birthweight, <span class="at">file =</span> <span class="st">&quot;new_birthweight.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="importing-and-exporting-data.html#cb8-1"></a><span class="kw">write.csv</span>(birthweight, <span class="dt">file =</span> <span class="st">&quot;new_birthweight.csv&quot;</span>)</span></code></pre></div>
 <p>The similar <code>read.delim()</code> and <code>write.delim()</code> can be used to read and write tab-delimited files, where columns are separated by tab characters rather than commas.</p>
 
 </div>

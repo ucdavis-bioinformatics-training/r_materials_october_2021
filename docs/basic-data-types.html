@@ -24,7 +24,7 @@
 <meta name="author" content="UC Davis Bioinformatics Core" />
 
 
-<meta name="date" content="2022-01-31" />
+<meta name="date" content="2022-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -61,7 +62,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -244,19 +244,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>raw</li>
 </ul>
 <p>Generally, in bioinformatics, values belong to one of the first three classes. Read more about the complex and raw data types <a href="https://r-coder.com/data-types-r/">here</a>.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basic-data-types.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(birthweight<span class="sc">$</span>birthweight)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basic-data-types.html#cb48-1"></a><span class="kw">class</span>(birthweight<span class="op">$</span>birthweight)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basic-data-types.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(birthweight<span class="sc">$</span>smoker)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basic-data-types.html#cb50-1"></a><span class="kw">class</span>(birthweight<span class="op">$</span>smoker)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="basic-data-types.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(birthweight<span class="sc">$</span>geriatric.pregnancy)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="basic-data-types.html#cb52-1"></a><span class="kw">class</span>(birthweight<span class="op">$</span>geriatric.pregnancy)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <p>The numeric category is fairly self-explanatory. What are character and logical?</p>
 <p>Character values are exactly what they sound like: stored characters (letters and / or numbers). In the birthweight table, the “birth.date” and “location” columns contain character values.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="basic-data-types.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(birthweight<span class="sc">$</span>location)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="basic-data-types.html#cb54-1"></a><span class="kw">head</span>(birthweight<span class="op">$</span>location)</span></code></pre></div>
 <pre><code>## [1] &quot;General&quot;     &quot;Silver Hill&quot; &quot;Silver Hill&quot; &quot;Silver Hill&quot; &quot;Memorial&quot;   
 ## [6] &quot;Memorial&quot;</code></pre>
 <p>Characters are recognizable by the quotation marks that appear around them in the output. R cannot perform mathematical operations on numbers stored as characters.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basic-data-types.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="st">&quot;1&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basic-data-types.html#cb56-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> &quot;1&quot;</span></span></code></pre></div>
 <p>Logical values are TRUE, FALSE, or NA (missing). Logical values are the result of comparing one item to another with <em>relational operators</em>.</p>
 <p>The relational operators in R are:</p>
 <ul>
@@ -267,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>==</code> equal to</li>
 <li><code>!=</code> not equal to</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-data-types.html#cb57-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>head.circumference <span class="sc">&gt;</span> <span class="dv">35</span>, <span class="fu">c</span>(<span class="st">&quot;length&quot;</span>, <span class="st">&quot;weeks.gestation&quot;</span>, <span class="st">&quot;maternal.height&quot;</span>, <span class="st">&quot;paternal.height&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-data-types.html#cb57-1"></a>birthweight[birthweight<span class="op">$</span>head.circumference <span class="op">&gt;</span><span class="st"> </span><span class="dv">35</span>, <span class="kw">c</span>(<span class="st">&quot;length&quot;</span>, <span class="st">&quot;weeks.gestation&quot;</span>, <span class="st">&quot;maternal.height&quot;</span>, <span class="st">&quot;paternal.height&quot;</span>)]</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
 <table>
 <caption>
@@ -550,7 +550,7 @@ NA
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="basic-data-types.html#cb58-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>maternal.age <span class="sc">&lt;=</span> <span class="dv">20</span>, <span class="fu">c</span>(<span class="st">&quot;location&quot;</span>, <span class="st">&quot;maternal.age&quot;</span>, <span class="st">&quot;paternal.age&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="basic-data-types.html#cb58-1"></a>birthweight[birthweight<span class="op">$</span>maternal.age <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>, <span class="kw">c</span>(<span class="st">&quot;location&quot;</span>, <span class="st">&quot;maternal.age&quot;</span>, <span class="st">&quot;paternal.age&quot;</span>)]</span></code></pre></div>
 <table>
 <caption>
 <span id="tab:unnamed-chunk-41">Table 4.2: </span>Results of birthweight[birthweight$maternal.age &lt;= 20, c(“location”, “maternal.age”, “paternal.age”)].
@@ -728,7 +728,7 @@ Silver Hill
 </tbody>
 </table>
 <p>Notice that when R is asked to perform a comparison between a number and a missing value, the result is a missing value.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-data-types.html#cb59-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>paternal.education <span class="sc">==</span> <span class="dv">10</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">13</span><span class="sc">:</span><span class="dv">16</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-data-types.html#cb59-1"></a>birthweight[birthweight<span class="op">$</span>paternal.education <span class="op">==</span><span class="st"> </span><span class="dv">10</span>, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">13</span><span class="op">:</span><span class="dv">16</span>)]</span></code></pre></div>
 <table>
 <caption>
 <span id="tab:unnamed-chunk-43">Table 4.3: </span>Results of birthweight[birthweight$paternal.education == 10, c(1,13:16)].
@@ -977,10 +977,10 @@ NA
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="basic-data-types.html#cb60-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>weeks.gestation <span class="sc">!=</span> <span class="dv">40</span>, <span class="st">&quot;weeks.gestation&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="basic-data-types.html#cb60-1"></a>birthweight[birthweight<span class="op">$</span>weeks.gestation <span class="op">!=</span><span class="st"> </span><span class="dv">40</span>, <span class="st">&quot;weeks.gestation&quot;</span>]</span></code></pre></div>
 <pre><code>##  [1] 38 39 41 41 39 39 34 38 38 38 41 37 39 41 38 35 39 37 38 44 41 37 41 41 35
 ## [26] 39 42 42 33 33 39 45 44</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basic-data-types.html#cb62-1" aria-hidden="true" tabindex="-1"></a>birthweight[birthweight<span class="sc">$</span>location <span class="sc">==</span> <span class="st">&quot;General&quot;</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basic-data-types.html#cb62-1"></a>birthweight[birthweight<span class="op">$</span>location <span class="op">==</span><span class="st"> &quot;General&quot;</span>,]</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table>
 <caption>
@@ -1641,38 +1641,38 @@ FALSE
 </table>
 </div>
 <p>Many of R’s functions also return logical values.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-data-types.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(birthweight<span class="sc">$</span>ID)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-data-types.html#cb63-1"></a><span class="kw">is.numeric</span>(birthweight<span class="op">$</span>ID)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basic-data-types.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(birthweight<span class="sc">$</span>smoker)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basic-data-types.html#cb65-1"></a><span class="kw">is.numeric</span>(birthweight<span class="op">$</span>smoker)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="coercion-converting-between-classes" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Coercion: converting between classes</h2>
 <p>The birthweight data frame has three columns that should probably be logical values: “smoker”, “low.birthweight”, and “geriatric.pregnancy”. All of these are questions that can be answered with TRUE/FALSE. However, only “geriatric.pregnancy” is stored as a logical value. Storing “smoker” and “low.birthweight” as logical values would be more useful, since it allows us to subset the data frame more easily.</p>
 <p>Changing the class of data is known as <em>coercion</em>.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basic-data-types.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(birthweight<span class="sc">$</span>low.birthweight)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basic-data-types.html#cb67-1"></a><span class="kw">as.logical</span>(birthweight<span class="op">$</span>low.birthweight)</span></code></pre></div>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
 ## [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
 ## [37]  TRUE  TRUE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basic-data-types.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(birthweight<span class="sc">$</span>smoker)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basic-data-types.html#cb69-1"></a><span class="kw">as.logical</span>(birthweight<span class="op">$</span>smoker)</span></code></pre></div>
 <pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 ## [26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA</code></pre>
 <p>The <code>as.logical()</code> function converted “low.birthweight” to a logical vector, but could not convert “smoker,” and returned a vector of missing data denoted by NA. Why is this?</p>
 <p>The coercion rule in R is as follows:</p>
 <p>logical &gt; integer &gt; numeric &gt; complex &gt; character</p>
 <p>R can convert logical values to integers, store integers as the more general numeric type, or represent numeric data as a character, but these coercion operations cannot always be reversed without losing information.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basic-data-types.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(birthweight<span class="sc">$</span>geriatric.pregnancy)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basic-data-types.html#cb71-1"></a><span class="kw">as.numeric</span>(birthweight<span class="op">$</span>geriatric.pregnancy)</span></code></pre></div>
 <pre><code>##  [1] 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0
 ## [39] 0 0 0 0</code></pre>
 <p>The <code>as.logical()</code> function only operates on “low.birthweight” the way we want because the data was encoded as 0s and 1s. If <em>any other numbers</em> were used, the results might be unexpected.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basic-data-types.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(birthweight<span class="sc">$</span>maternal.age)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basic-data-types.html#cb73-1"></a><span class="kw">as.logical</span>(birthweight<span class="op">$</span>maternal.age)</span></code></pre></div>
 <pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ## [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ## [31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
 <p>Let’s convert the “low.birthweight” column to logical.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basic-data-types.html#cb75-1" aria-hidden="true" tabindex="-1"></a>birthweight<span class="sc">$</span>low.birthweight <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(birthweight<span class="sc">$</span>low.birthweight)</span>
-<span id="cb75-2"><a href="basic-data-types.html#cb75-2" aria-hidden="true" tabindex="-1"></a>birthweight</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basic-data-types.html#cb75-1"></a>birthweight<span class="op">$</span>low.birthweight &lt;-<span class="st"> </span><span class="kw">as.logical</span>(birthweight<span class="op">$</span>low.birthweight)</span>
+<span id="cb75-2"><a href="basic-data-types.html#cb75-2"></a>birthweight</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
 <table>
 <caption>
